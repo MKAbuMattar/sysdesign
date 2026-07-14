@@ -1,0 +1,18 @@
+---
+import Eyebrow from "./ui/Eyebrow.astro";
+import Chip from "./ui/Chip.astro";
+import { topics } from "../data/plugin";
+---
+
+<section id="topics">
+  <div class="wrap">
+    <Eyebrow>Fourteen reference files</Eyebrow>
+    <h2>The knowledge lives in the files.</h2>
+    <p class="lead">
+      Dense, original, tradeoff-first prose. No external links — a reader never has to click out.
+    </p>
+    <div class="chips">
+      {topics.map((t, i) => <Chip index={i + 1} label={t} />)}
+    </div>
+  </div>
+</section>

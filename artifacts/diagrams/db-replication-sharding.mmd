@@ -1,0 +1,16 @@
+%% Read replicas (scale reads) + sharding by key (scale beyond one node)
+flowchart LR
+    App[Application]
+    App -->|writes| P[(Primary)]
+    App -->|reads| R1[(Replica 1)]
+    App -->|reads| R2[(Replica 2)]
+    P -. async replication .-> R1
+    P -. async replication .-> R2
+    subgraph Sharding by key range
+      S1[(Shard A-H)]
+      S2[(Shard I-P)]
+      S3[(Shard Q-Z)]
+    end
+    App -->|route by shard key| S1
+    App --> S2
+    App --> S3

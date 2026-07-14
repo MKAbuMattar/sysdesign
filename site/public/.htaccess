@@ -1,0 +1,30 @@
+# sysdesign.mkabumattar.com
+
+##### Cache expiration - BEGIN
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "now plus 1 week"
+  ExpiresByType application/javascript "now plus 1 week"
+  ExpiresByType image/svg+xml "now plus 1 month"
+  ExpiresByType image/png "now plus 1 month"
+  ExpiresByType image/x-icon "now plus 1 month"
+  ExpiresByType font/woff2 "now plus 1 month"
+  ExpiresByType text/html "now plus 1 day"
+  ExpiresByType application/manifest+json "now plus 1 week"
+</IfModule>
+##### Cache expiration - END
+
+##### Compression - BEGIN
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json image/svg+xml
+</IfModule>
+##### Compression - END
+
+##### Security headers - BEGIN
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+##### Security headers - END

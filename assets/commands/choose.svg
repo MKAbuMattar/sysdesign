@@ -1,0 +1,7 @@
+<svg width="100" height="100" viewBox="0 0 100 100" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>choose command icon</title><desc>A funnel beside a decision node on a light purple tile.</desc>
+<rect x="0" y="0" width="100" height="100" rx="22" fill="#F0EAFB"/>
+<path d="M30 34 L50 34 L44 50 L44 70 L36 74 L36 50 Z" fill="#6B4BB8"/>
+<circle cx="66" cy="40" r="10" fill="none" stroke="#6B4BB8" stroke-width="4"/>
+<line x1="66" y1="50" x2="66" y2="66" stroke="#6B4BB8" stroke-width="4" stroke-linecap="round"/>
+</svg>

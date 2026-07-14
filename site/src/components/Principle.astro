@@ -1,0 +1,23 @@
+---
+import Eyebrow from "./ui/Eyebrow.astro";
+import Node from "./ui/Node.astro";
+---
+
+<section id="principle">
+  <div class="wrap">
+    <Eyebrow>The method</Eyebrow>
+    <h2>Design is a chain of tradeoffs,<br />not a stack of best practices.</h2>
+    <p class="lead">Every answer follows the same three moves — the same shape as the mark.</p>
+    <div class="triad">
+      <Node hue="b" n="01" title="State the constraint">
+        Traffic pattern, consistency need, latency budget, team reality. No numbers? Assume out loud.
+      </Node>
+      <Node hue="t" n="02" title="Pick the option">
+        Reuse before build, managed before self-hosted, boring before novel. Name the one that fits.
+      </Node>
+      <Node hue="a" n="03" title="Name the tradeoff">
+        Every choice costs something — consistency, ops burden, latency, money. Say it plainly.
+      </Node>
+    </div>
+  </div>
+</section>

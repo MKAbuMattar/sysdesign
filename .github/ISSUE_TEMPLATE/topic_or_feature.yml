@@ -1,0 +1,34 @@
+name: New topic or command
+description: Suggest a reference topic to add or a new /sysdesign command.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - New reference topic
+        - New command
+        - Expand an existing reference file
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+      placeholder: "references/observability.md  or  /sysdesign:estimate"
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why it belongs here
+      description: What system-design question does it answer that the current files don't?
+    validations:
+      required: true
+  - type: textarea
+    id: outline
+    attributes:
+      label: Rough outline
+      description: The sub-topics and the key tradeoffs it would cover.

@@ -1,0 +1,16 @@
+---
+interface Props {
+  title?: string;
+  decorative?: boolean;
+  class?: string;
+}
+const { title = "claude", decorative = false, class: cls = "" } = Astro.props;
+---
+
+<div class:list={["term", cls]} aria-hidden={decorative ? "true" : undefined}>
+  <div class="term-bar">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="term-title">{title}</span>
+  </div>
+  <div class="term-body"><slot /></div>
+</div>

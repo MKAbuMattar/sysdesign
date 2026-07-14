@@ -1,0 +1,14 @@
+---
+interface Props {
+  hue: "b" | "t" | "a";
+  n: string;
+  title: string;
+}
+const { hue, n, title } = Astro.props;
+---
+
+<div class:list={["node", hue, "reveal"]}>
+  <div class="n">{n}</div>
+  <h3>{title}</h3>
+  <p><slot /></p>
+</div>

@@ -1,0 +1,33 @@
+---
+import Button from "./ui/Button.astro";
+import Terminal from "./ui/Terminal.astro";
+import CopyLine from "./ui/CopyLine.astro";
+import { INSTALL_1 } from "../data/plugin";
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">Claude Code plugin</span>
+      <h1>System design,<br /><span class="accent">wired into</span> your agent<span class="cursor">▍</span></h1>
+      <p class="lead">
+        A senior engineer's notebook your coding agent can read. One skill, ten commands,
+        fourteen self-contained reference files — tradeoffs stated, not hand-waved.
+      </p>
+      <div class="cta-row">
+        <Button href="#install">Install the plugin</Button>
+        <Button href="#commands" variant="ghost">Browse commands</Button>
+      </div>
+      <CopyLine id="install-cmd" command={INSTALL_1} label="Copy install command" />
+    </div>
+
+    <Terminal title="claude · sysdesign" decorative={true} class="reveal">
+      <div class="u">/sysdesign:compare REST vs GraphQL vs gRPC</div>
+      <div class="sys">constraint? public API · mixed clients · cacheable</div>
+      <div><span class="c-blue">REST</span>&nbsp;&nbsp;&nbsp;&nbsp;HTTP caching, broad support&nbsp;&nbsp;<span class="ok">✓ default</span></div>
+      <div><span class="c-teal">GraphQL</span>&nbsp;one round trip, pick fields&nbsp;&nbsp;<span class="sys">cost: caching, N+1</span></div>
+      <div><span class="c-amber">gRPC</span>&nbsp;&nbsp;&nbsp;&nbsp;low-latency svc-to-svc&nbsp;&nbsp;<span class="sys">cost: not browser-native</span></div>
+      <div class="rec">recommend <span class="c-blue">REST</span>. move off it only when a concrete pain justifies the cost.</div>
+    </Terminal>
+  </div>
+</section>

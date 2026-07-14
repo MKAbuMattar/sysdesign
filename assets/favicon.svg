@@ -1,0 +1,13 @@
+<svg width="120" height="120" viewBox="0 0 120 120" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>sysdesign favicon</title>
+<desc>Simplified single-color topology mark for small sizes.</desc>
+<g transform="translate(60,64)">
+<line x1="0" y1="0" x2="0" y2="-52" stroke="#3D6FD6" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="0" x2="-45" y2="26" stroke="#3D6FD6" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="0" x2="45" y2="26" stroke="#3D6FD6" stroke-width="4" stroke-linecap="round"/>
+<circle cx="0" cy="-52" r="11" fill="#3D6FD6"/>
+<circle cx="-45" cy="26" r="11" fill="#3D6FD6"/>
+<circle cx="45" cy="26" r="11" fill="#3D6FD6"/>
+<circle cx="0" cy="0" r="15" fill="#3D6FD6"/>
+</g>
+</svg>

@@ -1,0 +1,8 @@
+%% Cache at every hop; set a TTL at each layer. Cache-aside on the app tier.
+flowchart LR
+    Client --> CDN[CDN edge]
+    CDN -->|miss| LB[Load balancer]
+    LB --> App[App server]
+    App -->|cache-aside| Cache[(Redis)]
+    App -->|miss| DB[(Database)]
+    Cache -. populate on miss .-> App

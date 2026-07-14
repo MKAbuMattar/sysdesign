@@ -1,0 +1,15 @@
+%% Card payment: authorize (hold) now, capture + settle later, reconcile against the ledger
+sequenceDiagram
+    actor Cust as Customer
+    participant M as Merchant
+    participant PSP as PSP / Gateway
+    participant Net as Card network
+    participant Iss as Issuer
+    Cust->>M: Pay (idempotency key)
+    M->>PSP: Authorize
+    PSP->>Net: Auth request
+    Net->>Iss: Approve?
+    Iss->>Net: Approved (hold funds)
+    Net->>PSP: Auth OK
+    PSP->>M: Authorized
+    Note over M,Iss: Later - capture, then settle, reconcile against the ledger

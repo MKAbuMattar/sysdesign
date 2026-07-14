@@ -1,0 +1,8 @@
+---
+interface Props {
+  center?: boolean;
+}
+const { center = false } = Astro.props;
+---
+
+<span class="eyebrow" style={center ? "justify-content:center" : undefined}><slot /></span>

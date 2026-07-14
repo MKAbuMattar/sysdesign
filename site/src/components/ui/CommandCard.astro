@@ -1,0 +1,16 @@
+---
+interface Props {
+  name: string;
+  desc: string;
+}
+const { name, desc } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="cmdcard reveal">
+  <img src={`${base}commands/${name}.svg`} alt="" width="38" height="38" />
+  <div class="body">
+    <div class="name">/sysdesign:<b>{name}</b></div>
+    <div class="desc">{desc}</div>
+  </div>
+</div>

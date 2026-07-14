@@ -1,0 +1,31 @@
+name: Content correction
+description: A claim in a reference file is inaccurate, outdated, or missing a tradeoff.
+title: "docs: "
+labels: ["content"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: Reference file
+      placeholder: "references/security-auth.md"
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: The claim as written
+      description: Quote the sentence or table row.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What it should say
+      description: The correct version, in the house style — state the tradeoff, no external links.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Why (reasoning or reference)
+      description: Explain the correction. Don't paste copyrighted text; summarize in your own words.

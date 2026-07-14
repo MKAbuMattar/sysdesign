@@ -1,0 +1,14 @@
+<svg width="120" height="120" viewBox="0 0 120 120" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>sysdesign favicon on tile</title>
+<desc>White topology mark on a dark rounded tile.</desc>
+<rect x="0" y="0" width="120" height="120" rx="28" fill="#2D3748"/>
+<g transform="translate(60,64)">
+<line x1="0" y1="0" x2="0" y2="-52" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="0" x2="-45" y2="26" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+<line x1="0" y1="0" x2="45" y2="26" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+<circle cx="0" cy="-52" r="11" fill="#FFFFFF"/>
+<circle cx="-45" cy="26" r="11" fill="#FFFFFF"/>
+<circle cx="45" cy="26" r="11" fill="#FFFFFF"/>
+<circle cx="0" cy="0" r="15" fill="#FFFFFF"/>
+</g>
+</svg>

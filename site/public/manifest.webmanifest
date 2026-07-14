@@ -1,0 +1,27 @@
+{
+  "name": "sysdesign — system design for agents",
+  "short_name": "sysdesign",
+  "start_url": "./",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "any",
+  "description": "A Claude Code plugin: system design knowledge for your AI agent. State the constraint, pick the option, name the tradeoff.",
+  "background_color": "#0e1116",
+  "theme_color": "#0e1116",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

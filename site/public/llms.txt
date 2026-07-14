@@ -1,0 +1,38 @@
+# sysdesign
+
+> A Claude Code plugin that gives an AI coding agent system-design knowledge: one skill,
+> ten commands, and fourteen self-contained reference files. The method is consistent —
+> state the constraint, pick the option that fits it, name what you gave up. Original prose,
+> no external links, MIT-licensed. Inspired by the taxonomy of ByteByteGo's System Design 101.
+
+This site is a single-page landing built with Astro, hosted at https://sysdesign.mkabumattar.com.
+
+## Install (in Claude Code)
+
+- `/plugin marketplace add mkabumattar/sysdesign`
+- `/plugin install sysdesign@sysdesign`
+
+## Commands
+
+- explain — what a concept is, when to use it, the tradeoff
+- compare — options compared, one recommended for a stated constraint
+- review — pressure-test an architecture for SPOFs and missing safeguards
+- choose — pick a database / queue / cache / deployment under constraints
+- estimate — back-of-envelope QPS, storage, bandwidth, memory
+- tradeoffs — name what a design choice gains and gives up
+- diagram — sketch an architecture as Mermaid or ASCII
+- interview — the 7-step system-design interview framework
+- cheatsheet — condense an area into a scannable sheet
+- help — list commands and reference topics
+
+## Reference topics
+
+api-web, data-storage, caching-performance, distributed-systems, security-auth, devops-k8s,
+architecture-patterns, case-studies, networking, os-concurrency, payments, ai-ml-systems,
+dev-tools, interview.
+
+## Links
+
+- [Landing page](https://sysdesign.mkabumattar.com/)
+- [GitHub repository](https://github.com/mkabumattar/sysdesign)
+- [License (MIT)](https://github.com/mkabumattar/sysdesign/blob/main/LICENSE)

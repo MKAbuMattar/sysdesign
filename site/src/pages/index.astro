@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Principle from "../components/Principle.astro";
+import Commands from "../components/Commands.astro";
+import Topics from "../components/Topics.astro";
+import Features from "../components/Features.astro";
+import About from "../components/About.astro";
+import Install from "../components/Install.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "sysdesign — system design knowledge for your AI agent";
+const description =
+  "A Claude Code plugin: 1 skill, 10 commands, 14 self-contained reference files. State the constraint, pick the option, name the tradeoff.";
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <main id="top">
+    <Hero />
+    <Principle />
+    <Commands />
+    <Topics />
+    <Features />
+    <About />
+    <Install />
+  </main>
+  <Footer />
+</Base>

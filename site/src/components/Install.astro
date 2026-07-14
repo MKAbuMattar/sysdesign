@@ -1,0 +1,20 @@
+---
+import Eyebrow from "./ui/Eyebrow.astro";
+import Terminal from "./ui/Terminal.astro";
+import CopyLine from "./ui/CopyLine.astro";
+import { INSTALL_1, INSTALL_2 } from "../data/plugin";
+---
+
+<section id="install">
+  <div class="wrap cta-band">
+    <Eyebrow center={true}>Install</Eyebrow>
+    <h2>Two prompts in Claude Code.</h2>
+    <Terminal title="claude">
+      <CopyLine id="i1" command={INSTALL_1} label="Copy command one" bare={true} />
+      <CopyLine id="i2" command={INSTALL_2} label="Copy command two" bare={true} />
+    </Terminal>
+    <p class="meta">
+      <b>MIT</b> · self-contained · <b>10</b> commands · <b>14</b> reference files · no telemetry
+    </p>
+  </div>
+</section>

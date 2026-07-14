@@ -1,0 +1,16 @@
+%% OAuth 2.0 Authorization Code + PKCE — the correct flow for web/mobile/SPA
+sequenceDiagram
+    actor U as User
+    participant C as Client app
+    participant A as Auth server
+    participant R as Resource API
+    U->>C: Click "log in"
+    C->>A: Authorization request + PKCE challenge
+    A->>U: Login + consent
+    U->>A: Approve
+    A->>C: Authorization code
+    C->>A: Code + PKCE verifier
+    A->>C: Access token (short) + refresh token
+    C->>R: Request + access token
+    R->>C: Protected resource
+    Note over C,A: On expiry, exchange the refresh token for a new access token

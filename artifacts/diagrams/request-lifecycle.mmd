@@ -1,0 +1,9 @@
+%% Baseline request path: sync read/write on the hot path, slow work pushed async
+flowchart LR
+    Client --> GW[API gateway / LB]
+    GW --> Svc[Service]
+    Svc --> Cache[(Cache)]
+    Svc --> DB[(Database)]
+    Svc -->|async| Q[[Queue]]
+    Q --> Worker[Worker]
+    Worker --> DB

@@ -1,0 +1,20 @@
+{
+  "name": "sysdesign",
+  "version": "0.4.0",
+  "description": "System design knowledge for AI coding agents. 1 skill, 10 commands (explain, compare, review, choose, estimate, tradeoffs, diagram, interview, cheatsheet, help), and 14 self-contained reference files — original prose, no external links.",
+  "author": {
+    "name": "Mohammad Abu Mattar",
+    "url": "https://mkabumattar.com"
+  },
+  "homepage": "https://sysdesign.mkabumattar.com",
+  "icon": "./assets/icon.svg",
+  "license": "MIT",
+  "keywords": [
+    "system-design",
+    "architecture",
+    "distributed-systems",
+    "interview-prep",
+    "claude-code",
+    "agent-skills"
+  ]
+}
