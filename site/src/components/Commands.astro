@@ -13,7 +13,8 @@ import { commands } from "../data/plugin";
       reasoning stays consistent.
     </p>
     <div class="grid-cmd">
-      {commands.map(([name, desc]) => <CommandCard name={name} desc={desc} />)}
+      {commands.map((cmd) => <CommandCard cmd={cmd} />)}
     </div>
+    <p class="hint">Click a command for what it does and an example.</p>
   </div>
 </section>

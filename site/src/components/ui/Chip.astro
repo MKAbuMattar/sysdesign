@@ -1,10 +1,18 @@
 ---
-interface Props {
-  index: number;
-  label: string;
-}
-const { index, label } = Astro.props;
+import type { Topic } from "../../data/plugin";
+interface Props { index: number; topic: Topic }
+const { index, topic } = Astro.props;
 const num = String(index).padStart(2, "0");
 ---
 
-<span class="chip"><span>{num}</span>&nbsp; {label}</span>
+<button
+  class="chip"
+  type="button"
+  data-modal
+  data-title={topic.slug}
+  data-sub="reference file"
+  data-body={topic.covers}
+  aria-haspopup="dialog"
+>
+  <span>{num}</span>&nbsp; {topic.slug}
+</button>

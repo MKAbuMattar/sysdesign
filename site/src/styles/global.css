@@ -48,13 +48,28 @@ a { color: inherit; text-decoration: none; }
 ::selection { background: var(--accent); color: var(--ink); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
+/* skip link (a11y) */
+.skip-link {
+  position: absolute; left: 14px; top: -64px; z-index: 100;
+  background: var(--accent); color: var(--ink); font-family: var(--mono); font-size: 13px; font-weight: 600;
+  padding: 10px 15px; border-radius: 10px; transition: top 0.18s var(--ease);
+}
+.skip-link:focus { top: 12px; }
+
+/* 404 */
+.notfound { min-height: 62vh; display: flex; align-items: center; }
+.notfound h1 { font-family: var(--mono); font-size: clamp(1.8rem, 6vw, 3rem); letter-spacing: -1px; margin: 16px 0 12px; overflow-wrap: break-word; }
+.notfound .lead { margin-bottom: 26px; }
+
 /* nav */
 .nav {
   position: sticky; top: 0; z-index: 50;
   background: color-mix(in srgb, var(--ink) 82%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.25s var(--ease), background 0.25s var(--ease);
 }
+.nav.scrolled { background: color-mix(in srgb, var(--ink) 92%, transparent); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.34); }
 .nav .wrap { display: flex; align-items: center; gap: 24px; height: 62px; }
 .brand { display: flex; align-items: center; gap: 11px; font-family: var(--mono); font-weight: 700; letter-spacing: -0.5px; }
 .brand img { width: 30px; height: 30px; }
@@ -81,7 +96,7 @@ h2 { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 700; letter-spacing: -1
 code { font-family: var(--mono); }
 
 /* hero */
-.hero { padding-top: 74px; padding-bottom: 84px; }
+.hero { padding-top: 74px; padding-bottom: 84px; position: relative; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 54px; align-items: center; }
 .hero-grid > * { min-width: 0; }
 .tag {
@@ -159,9 +174,11 @@ code { font-family: var(--mono); }
 
 /* commands */
 .grid-cmd { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 268px), 1fr)); gap: 12px; margin-top: 34px; }
-.cmdcard { display: flex; gap: 13px; align-items: flex-start; background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 15px 16px; transition: border-color 0.2s var(--ease), background 0.2s var(--ease); }
+.cmdcard { display: flex; gap: 13px; align-items: flex-start; width: 100%; text-align: left; cursor: pointer; color: inherit; font: inherit; background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 15px 16px; transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease); }
+.cmdcard:hover { transform: translateY(-2px); }
 .cmdcard:hover { border-color: var(--accent-line); background: var(--ink-3); }
-.cmdcard img { width: 38px; height: 38px; flex: none; border-radius: 9px; }
+.cmdcard img { width: 38px; height: 38px; flex: none; border-radius: 9px; transition: transform 0.2s var(--ease); }
+.cmdcard:hover img { transform: scale(1.08) rotate(-3deg); }
 .cmdcard .body { min-width: 0; }
 .cmdcard .name { font-family: var(--mono); font-size: 14px; color: var(--paper); }
 .cmdcard .name b { color: var(--accent); font-weight: 500; }
@@ -186,7 +203,7 @@ code { font-family: var(--mono); }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 .chip {
   font-family: var(--mono); font-size: 13px; color: var(--muted);
-  background: var(--ink-2); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px;
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; cursor: pointer;
   transition: color 0.18s var(--ease), border-color 0.18s var(--ease), transform 0.18s var(--ease);
 }
 .chip:hover { color: var(--accent); border-color: var(--accent-line); transform: translateY(-2px); }
@@ -228,11 +245,27 @@ footer .fmono { font-family: var(--mono); }
   footer .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
-/* reveal */
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
-.reveal.in { opacity: 1; transform: none; }
+/* hint under the command / topic grids */
+.hint { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+
+/* detail modal (native <dialog>) */
+.detail-dialog { margin: auto; border: none; padding: 0; background: transparent; color: var(--paper); max-width: 560px; width: calc(100% - 36px); }
+.detail-dialog::backdrop { background: rgba(6, 9, 13, 0.66); backdrop-filter: blur(3px); }
+.dlg-inner { position: relative; background: var(--ink-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: 26px 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+.dlg-close { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-family: var(--mono); font-size: 13px; color: var(--muted); background: var(--ink-3); border: 1px solid var(--line-2); transition: color 0.18s var(--ease), border-color 0.18s var(--ease); }
+.dlg-close:hover { color: var(--accent); border-color: var(--accent-line); }
+.dlg-title { font-family: var(--mono); font-size: 1.2rem; font-weight: 700; letter-spacing: -0.5px; padding-right: 34px; }
+.dlg-sub { font-family: var(--mono); font-size: 0.82rem; color: var(--accent); margin-top: 6px; }
+.dlg-body { color: var(--muted); margin-top: 14px; line-height: 1.62; }
+.dlg-example-line { margin-top: 18px; }
+.dlg-example-line[hidden] { display: none; }
+.dlg-copy { flex: none; font-family: var(--mono); font-size: 11px; color: var(--muted); cursor: pointer; background: var(--ink-3); border: 1px solid var(--line-2); border-radius: 7px; padding: 4px 9px; transition: color 0.18s var(--ease), border-color 0.18s var(--ease); }
+.dlg-copy:hover { color: var(--accent); border-color: var(--accent-line); }
+
+/* reveal — visible by default; GSAP hides then animates only when motion is allowed (Base.astro).
+   Never hide via CSS: if JS fails, the section must still render. */
+.reveal { will-change: opacity, transform; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
   .cursor { animation: none; }
 }

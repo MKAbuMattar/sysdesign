@@ -9,10 +9,11 @@ import { topics } from "../data/plugin";
     <Eyebrow>Fourteen reference files</Eyebrow>
     <h2>The knowledge lives in the files.</h2>
     <p class="lead">
-      Dense, original, tradeoff-first prose. No external links — a reader never has to click out.
+      Dense, original, tradeoff-first prose. There are no external links, so a reader never has to click out.
     </p>
     <div class="chips">
-      {topics.map((t, i) => <Chip index={i + 1} label={t} />)}
+      {topics.map((t, i) => <Chip index={i + 1} topic={t} />)}
     </div>
+    <p class="hint">Click a topic to see what it covers.</p>
   </div>
 </section>

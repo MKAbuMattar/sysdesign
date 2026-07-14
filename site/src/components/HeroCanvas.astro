@@ -1,0 +1,130 @@
+---
+// Three.js node-field behind the hero: the hub-and-spoke brand at scale.
+// Bolder pass: additive-blended points, glowing + pulsing brand hubs, depth fog,
+// scroll-scrubbed camera dolly, cursor parallax. Reduced-motion-gated, masked off the copy.
+---
+
+<canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+<script>
+  import * as THREE from "three";
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+
+  const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement | null;
+  if (canvas && canvas.parentElement) {
+    const host: HTMLElement = canvas.parentElement;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x0e1116, 0.022);
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 120);
+    const camZ = 26;
+    camera.position.z = camZ;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setClearColor(0x000000, 0);
+
+    const COUNT = 120;
+    const RX = 22, RY = 14, RZ = 15;
+    const pts: THREE.Vector3[] = [];
+    for (let i = 0; i < COUNT; i++)
+      pts.push(new THREE.Vector3((Math.random() - 0.5) * RX * 2, (Math.random() - 0.5) * RY * 2, (Math.random() - 0.5) * RZ * 2));
+
+    const group = new THREE.Group();
+
+    const pGeo = new THREE.BufferGeometry().setFromPoints(pts);
+    const pMat = new THREE.PointsMaterial({ color: 0x5b8def, size: 0.3, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false });
+    group.add(new THREE.Points(pGeo, pMat));
+
+    const linePos: number[] = [];
+    for (let i = 0; i < COUNT; i++)
+      for (let j = i + 1; j < COUNT; j++)
+        if (pts[i].distanceTo(pts[j]) < 6.5) linePos.push(pts[i].x, pts[i].y, pts[i].z, pts[j].x, pts[j].y, pts[j].z);
+    const lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePos, 3));
+    group.add(new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x3a465a, transparent: true, opacity: 0.4 })));
+
+    // soft radial glow texture for the hub halos
+    function glowTexture(): THREE.CanvasTexture {
+      const c = document.createElement("canvas");
+      c.width = c.height = 64;
+      const g = c.getContext("2d")!;
+      const grd = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grd.addColorStop(0, "rgba(255,255,255,1)");
+      grd.addColorStop(0.4, "rgba(255,255,255,0.5)");
+      grd.addColorStop(1, "rgba(255,255,255,0)");
+      g.fillStyle = grd;
+      g.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(c);
+    }
+    const glow = glowTexture();
+    const hubs: THREE.Sprite[] = [];
+    [0x5b8def, 0x3bb89a, 0xe0a458].forEach((c, i) => {
+      const a = (i / 3) * Math.PI * 2 - Math.PI / 2;
+      const pos = new THREE.Vector3(Math.cos(a) * 9, Math.sin(a) * 6, 4);
+      const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glow, color: c, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false }));
+      halo.scale.set(5, 5, 1);
+      halo.position.copy(pos);
+      group.add(halo);
+      hubs.push(halo);
+      const core = new THREE.Mesh(new THREE.SphereGeometry(0.45, 16, 16), new THREE.MeshBasicMaterial({ color: c }));
+      core.position.copy(pos);
+      group.add(core);
+    });
+
+    scene.add(group);
+
+    let mx = 0, my = 0;
+    addEventListener("pointermove", (e) => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true });
+
+    function resize() {
+      const w = host.clientWidth, h = host.clientHeight;
+      if (!w || !h) return;
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    addEventListener("resize", resize, { passive: true });
+
+    let scrollP = 0, t = 0;
+    function render() {
+      t += 0.016;
+      group.rotation.y += 0.0009;
+      group.rotation.x += 0.0004;
+      camera.position.z = camZ + scrollP * 16;      // scroll dolly-out
+      group.rotation.y += scrollP * 0.6;            // extra spin as you scroll
+      camera.position.x += (mx * 5 - camera.position.x) * 0.04;
+      camera.position.y += (-my * 3.5 - camera.position.y) * 0.04;
+      hubs.forEach((h, i) => { const s = 5 + Math.sin(t * 1.5 + i * 2) * 0.8; h.scale.set(s, s, 1); }); // pulse
+      camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+    }
+
+    if (reduced) {
+      render();
+    } else {
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.create({ trigger: host, start: "top top", end: "bottom top", scrub: true, onUpdate: (st) => { scrollP = st.progress; } });
+      let raf = 0;
+      const loop = () => { render(); raf = requestAnimationFrame(loop); };
+      loop();
+      document.addEventListener("visibilitychange", () => { cancelAnimationFrame(raf); if (!document.hidden) loop(); });
+    }
+  }
+</script>
+
+<style>
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(100deg, transparent 0%, transparent 34%, #000 68%);
+    mask-image: linear-gradient(100deg, transparent 0%, transparent 34%, #000 68%);
+  }
+</style>

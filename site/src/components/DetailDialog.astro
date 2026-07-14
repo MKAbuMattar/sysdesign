@@ -1,0 +1,17 @@
+---
+// Shared detail modal, populated on click by any [data-modal] trigger (command cards, topic chips).
+// Native <dialog>: focus trap, Esc-to-close, and backdrop come for free.
+---
+
+<dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dlg-title">
+  <div class="dlg-inner">
+    <button class="dlg-close" type="button" aria-label="Close">✕</button>
+    <div class="dlg-title" id="dlg-title"></div>
+    <p class="dlg-sub" id="dlg-sub"></p>
+    <p class="dlg-body" id="dlg-body"></p>
+    <div class="cmd dlg-example-line" id="dlg-example-wrap" hidden>
+      <span class="prompt">/</span><code id="dlg-example"></code>
+      <button class="dlg-copy" type="button" aria-label="Copy example">copy</button>
+    </div>
+  </div>
+</dialog>

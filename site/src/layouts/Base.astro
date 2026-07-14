@@ -29,13 +29,17 @@ const site = "https://sysdesign.mkabumattar.com";
     <meta name="twitter:card" content="summary" />
   </head>
   <body>
+    <a href="#top" class="skip-link">Skip to content</a>
     <slot />
 
-    <script is:inline>
+    <script>
+      import gsap from "gsap";
+      import ScrollTrigger from "gsap/ScrollTrigger";
+
       // copy-to-clipboard for command lines
       document.querySelectorAll("[data-copy]").forEach((btn) => {
         btn.addEventListener("click", async () => {
-          const el = document.getElementById(btn.getAttribute("data-copy"));
+          const el = document.getElementById(btn.getAttribute("data-copy") || "");
           const text = "/" + (el?.textContent ?? "");
           try {
             await navigator.clipboard.writeText(text.trim());
@@ -47,20 +51,105 @@ const site = "https://sysdesign.mkabumattar.com";
           }
         });
       });
-      // scroll reveal — enhances an already-visible default
+
+      // nav condenses once you scroll (functional state, kept regardless of motion pref)
+      const nav = document.querySelector(".nav");
+      if (nav) {
+        const onScroll = () => nav.classList.toggle("scrolled", scrollY > 8);
+        onScroll();
+        addEventListener("scroll", onScroll, { passive: true });
+      }
+
+      // motion: GSAP entrance + scroll reveals. .reveal is visible in CSS by default;
+      // we hide-then-animate only when motion is allowed, so a JS failure never blanks a section.
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const els = document.querySelectorAll(".reveal");
-      if (!reduced && "IntersectionObserver" in window) {
-        const io = new IntersectionObserver(
-          (entries) =>
-            entries.forEach(
-              (e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))
-            ),
-          { threshold: 0.14 }
-        );
-        els.forEach((el) => io.observe(el));
-      } else {
-        els.forEach((el) => el.classList.add("in"));
+
+      // detail modal: any [data-modal] trigger opens the shared dialog (functional; animation gated)
+      const dlg = document.getElementById("detail-dialog") as HTMLDialogElement | null;
+      if (dlg) {
+        const exWrap = document.getElementById("dlg-example-wrap");
+        const exCode = document.getElementById("dlg-example");
+        const put = (id: string, v: string) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+        document.querySelectorAll<HTMLElement>("[data-modal]").forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            put("dlg-title", trigger.dataset.title || "");
+            put("dlg-sub", trigger.dataset.sub || "");
+            put("dlg-body", trigger.dataset.body || "");
+            const ex = trigger.dataset.example || "";
+            if (ex && exWrap && exCode) { exCode.textContent = ex.replace(/^\//, ""); exWrap.hidden = false; }
+            else if (exWrap) exWrap.hidden = true;
+            dlg.showModal();
+            if (!reduced) gsap.from(".dlg-inner", { y: 16, opacity: 0, duration: 0.3, ease: "power3.out" });
+          });
+        });
+        dlg.querySelector(".dlg-close")?.addEventListener("click", () => dlg.close());
+        dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+        dlg.querySelector(".dlg-copy")?.addEventListener("click", async (e) => {
+          const btn = e.currentTarget as HTMLElement;
+          try {
+            await navigator.clipboard.writeText("/" + (exCode?.textContent ?? "").trim());
+            const old = btn.textContent;
+            btn.textContent = "copied";
+            setTimeout(() => (btn.textContent = old), 1400);
+          } catch (err) { /* clipboard unavailable */ }
+        });
+      }
+
+      if (!reduced) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .from(".hero .tag", { y: 16, opacity: 0, duration: 0.5 })
+          .from(".hero h1", { clipPath: "inset(0 100% 0 0)", opacity: 0, duration: 0.85 }, "-=0.15")
+          .from(".hero p.lead", { y: 18, opacity: 0, duration: 0.5 }, "-=0.45")
+          .from(".hero .cta-row", { y: 16, opacity: 0, duration: 0.45 }, "-=0.3")
+          .from(".hero .cmd", { y: 14, opacity: 0, duration: 0.4 }, "-=0.3");
+
+        // hero terminal drifts on scroll (parallax)
+        gsap.to(".hero .term", {
+          yPercent: -14, ease: "none",
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+        });
+
+        gsap.set(".reveal", { opacity: 0, y: 18 });
+        ScrollTrigger.batch(".reveal", {
+          start: "top 88%",
+          onEnter: (els) =>
+            gsap.to(els, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.07, overwrite: true }),
+        });
+        ScrollTrigger.refresh();
+
+        // magnetic primary CTAs: drift toward the cursor
+        document.querySelectorAll<HTMLElement>(".btn-primary").forEach((btn) => {
+          const xTo = gsap.quickTo(btn, "x", { duration: 0.4, ease: "power3" });
+          const yTo = gsap.quickTo(btn, "y", { duration: 0.4, ease: "power3" });
+          btn.addEventListener("pointermove", (e) => {
+            const r = btn.getBoundingClientRect();
+            xTo((e.clientX - (r.left + r.width / 2)) * 0.3);
+            yTo((e.clientY - (r.top + r.height / 2)) * 0.4);
+          });
+          btn.addEventListener("pointerleave", () => { xTo(0); yTo(0); });
+        });
+
+        // terminal type-on: type the command, then print the result rows
+        const body = document.querySelector(".hero .term-body");
+        const cmd = body?.querySelector<HTMLElement>(".u");
+        if (body && cmd) {
+          const rows = Array.from(body.children).filter((el) => el !== cmd);
+          const full = cmd.textContent || "";
+          cmd.textContent = "";
+          const state = { n: 0 };
+          gsap.set(rows, { opacity: 0, y: 6 });
+          gsap
+            .timeline({ delay: 0.55 })
+            .to(state, {
+              n: full.length,
+              duration: Math.max(0.6, full.length * 0.02),
+              ease: "none",
+              onUpdate: () => { cmd.textContent = full.slice(0, Math.round(state.n)); },
+            })
+            .to(rows, { opacity: 1, y: 0, duration: 0.25, stagger: 0.12, ease: "power2.out" }, "+=0.15");
+        }
       }
     </script>
   </body>
