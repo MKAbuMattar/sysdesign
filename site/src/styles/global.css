@@ -83,6 +83,7 @@ code { font-family: var(--mono); }
 /* hero */
 .hero { padding-top: 74px; padding-bottom: 84px; }
 .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 54px; align-items: center; }
+.hero-grid > * { min-width: 0; }
 .tag {
   font-family: var(--mono); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--accent); border: 1px solid var(--accent-line); background: var(--accent-soft);
@@ -126,7 +127,7 @@ code { font-family: var(--mono); }
 .cmd button:hover { color: var(--accent); border-color: var(--accent-line); }
 
 /* terminal */
-.term { background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); overflow: hidden; }
+.term { background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); overflow: hidden; min-width: 0; max-width: 100%; }
 .term-bar { display: flex; align-items: center; gap: 8px; padding: 12px 15px; border-bottom: 1px solid var(--line); background: var(--ink-3); }
 .dot { width: 11px; height: 11px; border-radius: 50%; }
 .dot.r { background: #fb7185; } .dot.y { background: var(--amber); } .dot.g { background: var(--teal); }
@@ -213,7 +214,12 @@ footer a:hover { color: var(--accent); }
 footer .fmono { font-family: var(--mono); }
 
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
-@media (max-width: 760px) { section { padding: 68px 0; } .wrap { padding: 0 18px; } .nav .wrap { gap: 12px; } }
+@media (max-width: 760px) {
+  section { padding: 68px 0; }
+  .wrap { padding: 0 18px; }
+  .nav .wrap { gap: 12px; }
+  .nav-cta { margin-left: auto; }
+}
 @media (max-width: 520px) {
   .hero { padding-top: 54px; }
   .hero h1 { letter-spacing: -1px; }
