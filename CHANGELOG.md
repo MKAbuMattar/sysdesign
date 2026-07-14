@@ -4,6 +4,28 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.6.0] - 2026-07-14
+
+### Added
+
+- **`/sysdesign:plan`** — a dedicated command that runs the full multi-round interview and emits
+  a complete, concrete plan following a fixed section template
+  (`skills/system-design/plan-template.md`). All files are written to `.sysdesign-<project-name>/`
+  at the repo root (`PLAN.md` + `requirements.md`), and it closes with a validation round.
+- A **worked example plan** (`examples/marketplace-plan.md`) demonstrating the target depth.
+
+### Changed
+
+- **Full designs are now a multi-round interview.** The skill runs at least ~8 rounds of
+  `AskUserQuestion` — one system area per round (product/scope, users/scale, data/consistency,
+  API/clients, auth/security, money path, media/search, infra/delivery, reliability/cost) —
+  adapting each round to the previous answers before it designs anything, and **closes with a
+  mandatory validation round** to confirm the design and resolve any residual conflicts.
+- **Plans must be complete and concrete.** The output now covers every section — requirements →
+  estimate → data model → API → architecture + diagram → component choices → money path →
+  security → caching → search/media → deployment → reliability/observability → tradeoffs →
+  risks — grounded in the answers and real numbers, never a generic summary.
+
 ## [0.5.0] - 2026-07-14
 
 ### Added
@@ -51,5 +73,6 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.6.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.6.0
 [0.5.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.5.0
 [0.4.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.4.0

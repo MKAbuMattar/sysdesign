@@ -58,10 +58,25 @@ Regardless of command, follow this shape:
    Skip a dimension only when the user already gave it. **Never assume a missing input — ask.** If the user won't answer or says "you decide," don't fabricate a requirement silently: present the realistic options with their consequences via `AskUserQuestion` and either let them pick or make an explicit, labelled recommendation they can veto. A pure concept `explain` needs questions only when the user's stack or use case changes the answer.
 
    **Then check for conflicts, and push back.** Test the answers against each other and against the constraints before designing. When choices pull against each other — strong consistency with very high single-node write throughput, multi-region HA on a hobby budget, passwordless-only alongside a legacy-client requirement — name the conflict, explain *why* it can't all hold, and ask another `AskUserQuestion` offering concrete ways to resolve it (relax one side, pay the cost, split the requirement). Never quietly pick the winner for them.
+
+   **A full system design or build plan is a multi-round interview — not two questions.** Cover the whole system across **at least ~8 rounds** of `AskUserQuestion` (one area per round, 1–4 questions each), adapting each round to the previous answers; do not start designing early. Work the rounds in order, skipping only what a smaller project genuinely lacks:
+   1. **Product & scope** — what it is, core entities, top user actions, in/out of scope, the success metric.
+   2. **Users & scale** — audience, DAU/MAU, object counts (listings, users, events…), read:write ratio, growth, regions.
+   3. **Data & consistency** — each core entity's shape, where strong vs eventual consistency is required, retention, PII.
+   4. **API & clients** — style (REST/GraphQL/gRPC), web vs mobile, real-time (SSE/WebSocket), third-party integrations.
+   5. **Auth & security** — auth model (session/JWT/SSO/passwordless), roles/permissions, compliance.
+   6. **Money path** (if any) — checkout/deposits/payouts, PSP vs direct, escrow, refunds, the ledger.
+   7. **Media & search** — image/video volume, upload path, CDN, search engine, and the filters/facets that matter.
+   8. **Infra & delivery** — cloud, deploy target (K8s/serverless/VM/on-prem), regions/DR, CI/CD, IaC.
+   9. **Reliability, cost & team** — availability target (SLO, RTO/RPO), observability, budget, team size, timeline.
+
+   After the rounds, reconcile conflicts, **confirm the locked requirements back to the user**, then design.
 1. **Restate the constraint** you're designing against (from their answers).
 2. **Pick the rung that fits.** Reuse before build, managed before self-hosted, boring before novel. Name the option.
 3. **Name the tradeoff.** Every choice costs something (consistency, ops burden, cost, latency). Say it.
 4. **Flag the non-negotiables.** Validation at trust boundaries, data-loss handling, auth, and observability are never dropped to "keep it simple."
+5. **For a full plan, deliver every section — concrete, not generic.** Ground every choice in the answers and the estimate's real numbers. Cover, in order: locked requirements → capacity estimate (QPS, storage, bandwidth) → data model → API surface → high-level architecture with a diagram → component choices (each: constraint → option → cost) → the money path (if any) → security & auth → caching & performance → search & media → deployment & regions → reliability & observability → tradeoff ledger → risks and what would change the design. Commit to specifics — named tech, concrete numbers, real endpoints/schemas where they clarify. A plan that could be pasted onto any app hasn't been designed. Write the plan and everything it needs into `.sysdesign-<project-name>/` at the root of the current repo/working directory (kebab-case the system's name): the locked `requirements.md`, the `PLAN.md`, and any diagrams all live in that one directory.
+6. **Validate the finished design with the user — one more `AskUserQuestion` round.** After the plan is written, don't call it done. Re-read the design against itself and surface its consequential decisions and any residual conflict, risk, or gap the answers didn't fully settle (e.g. the estimate now says one node won't hold; the chosen store fights the consistency need; the region plan outruns the budget). Ask the user to confirm each or choose how to resolve it, then revise the plan from their answers. This closing round is mandatory — never assume the design is right, and never resolve a conflict silently.
 
 ## Attribution & licensing
 

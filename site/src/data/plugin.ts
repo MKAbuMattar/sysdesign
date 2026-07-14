@@ -1,6 +1,7 @@
 // Single source of truth for the plugin's commands, topics, and install steps.
 
 export const commands: readonly (readonly [string, string])[] = [
+  ["plan", "design end to end: full interview → complete plan"],
   ["explain", "what it is, when to use it, the tradeoff"],
   ["compare", "options compared, one recommended for a constraint"],
   ["review", "pressure-test a design for SPOFs and safeguards"],
