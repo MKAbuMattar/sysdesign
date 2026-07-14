@@ -1,5 +1,7 @@
 # Caching & Performance
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): read:write ratio, staleness tolerance, and what's hot (static assets vs dynamic reads). They pick the cache strategy and whether a CDN earns its place.
+
 ## Latency budget (know these orders of magnitude)
 
 Memory read ~100 ns · SSD read ~100 µs · same-DC round trip ~0.5 ms · disk seek ~10 ms · cross-continent round trip ~150 ms. Every hop you remove is worth more than micro-optimizing one.

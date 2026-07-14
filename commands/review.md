@@ -4,6 +4,8 @@ description: Pressure-test an architecture or diagram for gaps, SPOFs, and missi
 
 Use the `system-design` skill. Review the architecture the user describes or the diagram/file they point to: `$ARGUMENTS`.
 
+If the architecture, its target load, or its consistency needs aren't clear from the request, clarify with `AskUserQuestion` before reviewing — a review against unknown constraints is guesswork.
+
 Check for, and report only what actually applies:
 - Single points of failure and missing redundancy
 - No timeouts / retries / circuit breakers / backpressure

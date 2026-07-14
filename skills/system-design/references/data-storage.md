@@ -1,5 +1,7 @@
 # Data & Storage
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): data shape (relational · document · key-value · wide-column · search · time-series), consistency (strong vs eventual), and scale (fits one node vs must shard). These decide the store and its topology.
+
 ## Picking a database
 
 Start with a relational DB (Postgres). Move off it only for a proven reason:

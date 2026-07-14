@@ -1,0 +1,55 @@
+# Changelog
+
+All notable changes to this project are documented here. The format is based on
+[Keep a Changelog](https://keepachangelog.com/), and this project adheres to
+[Semantic Versioning](https://semver.org/).
+
+## [0.5.0] - 2026-07-14
+
+### Added
+
+- **Clarify-first behavior.** The skill now gathers requirements with the `AskUserQuestion`
+  tool *before* designing. The first question establishes the **project type** (web app, API
+  service, marketplace, real-time app, data/ML pipeline, infra/platform, …), which decides
+  which references and commands even apply.
+- **Iterative questioning with "Other".** Questions are asked a couple at a time; a custom
+  "Other" answer opens the next adapted question and can change the design direction. Looping
+  continues until the design-determining inputs are settled.
+- An **"Ask first" note on every reference file** naming that domain's design-changing forks —
+  deployment target (K8s · Docker · VM · serverless · on-prem), auth model (session · JWT ·
+  SSO · passwordless), data shape, RAG vs fine-tune, PSP vs direct acquiring, and so on.
+- **No silent assumptions.** A missing input is always asked, never invented; if the user
+  delegates the call, the pick is stated explicitly and can be vetoed.
+- **Conflict detection.** When answers pull against each other (strong consistency + huge write
+  scale, HA on a tiny budget, passwordless + legacy clients), the skill names the conflict,
+  explains why it can't all hold, and asks how to resolve it before designing.
+
+### Changed
+
+- All commands except `help` now prefer asking with `AskUserQuestion` over assuming; assumptions
+  are a labelled fallback only when the user declines or says "just assume".
+- Work is **scoped to what the project needs** — no mechanical dump of every command or artifact.
+
+## [0.4.0] - 2026-07-14
+
+### Added
+
+- Initial public release: **1 skill (`system-design`), 10 commands, 14 self-contained reference files.**
+- Commands: `explain`, `compare`, `review`, `choose`, `estimate`, `tradeoffs`, `diagram`,
+  `interview`, `cheatsheet`, `help`.
+- References covering all fifteen *System Design 101* categories, including `networking`,
+  `os-concurrency`, `payments`, `ai-ml-systems`, and `dev-tools`.
+- `artifacts/` — generic Mermaid diagrams and a self-contained `uv` export script that bundles
+  the references into Markdown / PDF / docx.
+- `scripts/validate.sh` and a CI workflow enforcing valid manifests, zero external links, mapped
+  references, and frontmatter.
+- Community-health files, brand assets (logo, icon, favicons, per-command glyphs), and an Astro
+  landing page for [sysdesign.mkabumattar.com](https://sysdesign.mkabumattar.com).
+
+### Notes
+
+- The knowledge is **self-contained** — original prose with no external links, inspired by (never
+  copied from) ByteByteGo's *System Design 101*. MIT-licensed.
+
+[0.5.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.5.0
+[0.4.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.4.0

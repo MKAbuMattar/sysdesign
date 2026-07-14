@@ -9,3 +9,5 @@ Use the `system-design` skill, `references/interview.md`. Topic: `$ARGUMENTS`.
 - If nothing specific: pick a classic problem and run it.
 
 Model good interview behavior: clarify first, estimate, state tradeoffs, stay concise.
+
+If this is a **real design task** (not mock-interview practice) — e.g. "design/plan our app" — gather the missing requirements up front with `AskUserQuestion` (scope & content, scale, consistency/latency, tech stack & hosting, constraints) instead of only narrating the clarify step, then design against the answers.

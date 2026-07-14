@@ -1,5 +1,7 @@
 # API & Web
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): API style (REST · GraphQL · gRPC), client mix (browser · mobile · service-to-service), and real-time need (none · SSE · WebSocket). Each reshapes the API tier — clarify before recommending.
+
 ## Protocol / style choice
 
 | Need | Reach for |

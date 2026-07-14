@@ -33,8 +33,10 @@ its reference files) plus two JSON manifests. It installs via
 `security-auth` · `devops-k8s` · `architecture-patterns` · `case-studies` ·
 `networking` · `os-concurrency` · `payments` · `ai-ml-systems` · `dev-tools` · `interview`
 
-Each stands alone: dense original prose, tradeoff-first, no external links. Adding a topic
-means a new `references/<topic>.md` **and** a row in the SKILL.md reference map.
+Each stands alone: dense original prose, tradeoff-first, no external links. Each opens with an
+**Ask first** note naming that domain's design-changing forks (the choices the agent should
+surface via `AskUserQuestion` before recommending). Adding a topic means a new
+`references/<topic>.md` (with its Ask-first note) **and** a row in the SKILL.md reference map.
 
 ## Working commands
 

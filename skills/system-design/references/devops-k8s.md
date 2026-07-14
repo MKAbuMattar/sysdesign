@@ -1,5 +1,7 @@
 # DevOps & Kubernetes
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): deployment target (Kubernetes · Docker Compose · bare VM · serverless/PaaS · on-prem), deploy strategy (rolling · blue-green · canary), and CI/CD + GitOps stack. The target changes everything below.
+
 ## Kubernetes service types
 
 - **ClusterIP**: internal-only, default. Service-to-service.

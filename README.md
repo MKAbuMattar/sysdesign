@@ -56,6 +56,20 @@ Then `/reload-plugins` to apply. Try it:
 
 Or just talk — the `system-design` skill activates on architecture/design questions without a command.
 
+## Update
+
+When a new version ships:
+
+```
+/plugin update sysdesign
+```
+
+```
+/reload-plugins
+```
+
+See the [CHANGELOG](CHANGELOG.md) for what changed in each release.
+
 ## The method
 
 Every answer follows the same three moves:

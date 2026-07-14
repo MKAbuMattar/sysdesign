@@ -2,7 +2,7 @@
 
 ## Answer framework (don't skip step 1)
 
-1. **Clarify & scope** (5 min). Functional requirements, non-functional (scale, latency, consistency, availability), and what's out of scope. Get the interviewer to agree before designing.
+1. **Clarify & scope** (5 min). Functional requirements, non-functional (scale, latency, consistency, availability), and what's out of scope. Get the interviewer to agree before designing. When you're designing for a real user rather than practicing, gather these with `AskUserQuestion` — offer options, let them pick or answer "Other", and follow up iteratively as answers reshape the design.
 2. **Estimate** (back-of-envelope). QPS, storage/day, bandwidth, read:write ratio. Round hard. This drives every later choice.
 3. **API + data model.** Define the handful of endpoints and the core entities/schema.
 4. **High-level design.** Boxes and arrows: clients → LB/gateway → services → data + cache + queue. Get a working baseline before optimizing.

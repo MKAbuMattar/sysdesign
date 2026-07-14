@@ -1,5 +1,5 @@
 .serena/
-.claude/settings.local.json
+.claude/
 .vscode/
 .DS_Store
 dist/

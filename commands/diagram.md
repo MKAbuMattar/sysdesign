@@ -4,6 +4,8 @@ description: Sketch a system architecture as a Mermaid (or ASCII) diagram
 
 Use the `system-design` skill. Diagram: `$ARGUMENTS`.
 
+If the system's scope or major components aren't clear from the request, clarify with `AskUserQuestion` first, then diagram.
+
 Produce a Mermaid `flowchart` of the architecture: clients → edge (LB/gateway) → services → data + cache + queue, with the data flow labeled. Include only the components that matter for the question.
 
 - Mark trust boundaries and label edges sync vs async.

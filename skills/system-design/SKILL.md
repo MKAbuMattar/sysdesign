@@ -46,7 +46,19 @@ Load the file that matches the topic. Each is a standalone quick-reference.
 
 Regardless of command, follow this shape:
 
-1. **Restate the constraint.** Traffic pattern, consistency need, latency budget, team/ops reality. No numbers → ask or assume out loud.
+0. **Clarify the requirements first — ask, don't assume.** **Start with what they're building.** The very first `AskUserQuestion` establishes the **project type** and its core purpose — e.g. web app · API / backend service · mobile app · marketplace · real-time / chat · data or ML pipeline · infra / platform · CLI / library — because that answer decides which references and commands even apply. **Don't run every command or emit every artifact by default; scope the work to what the project actually needs** (a static site and a payments platform share almost nothing). From there, whenever a real choice or unknown would change the outcome, **ask with `AskUserQuestion`** — never silently invent it. Offer concrete options and let the user pick; every question also lets them answer **"Other"** with their own value. Cover the dimensions that actually change the design:
+   - **Scope & content** — what the app/system does, its core entities and top user actions, what's explicitly out of scope.
+   - **Scale** — users / DAU, read:write ratio, data volume, growth, peak vs average.
+   - **Consistency & latency** — where strong consistency is required (money, inventory) vs where eventual is fine; the latency budget.
+   - **Tech stack & hosting** — preferred or mandated language, framework, database, and cloud (managed vs self-hosted); existing systems to fit.
+   - **Constraints** — budget, team size / ops maturity, timeline, compliance (PCI, GDPR).
+
+   **Ask iteratively.** Read every answer before the next question. An answer — especially a custom **"Other"** — can open a new decision or change the design's direction; when it does, ask the next `AskUserQuestion` adapted to it (e.g. "Postgres" → ask about read-replica vs sharding; a custom stack → ask what it must integrate with). Keep looping, a couple of questions at a time, until the inputs that determine the design are settled — then design against them and let those answers drive every later choice.
+
+   Skip a dimension only when the user already gave it. **Never assume a missing input — ask.** If the user won't answer or says "you decide," don't fabricate a requirement silently: present the realistic options with their consequences via `AskUserQuestion` and either let them pick or make an explicit, labelled recommendation they can veto. A pure concept `explain` needs questions only when the user's stack or use case changes the answer.
+
+   **Then check for conflicts, and push back.** Test the answers against each other and against the constraints before designing. When choices pull against each other — strong consistency with very high single-node write throughput, multi-region HA on a hobby budget, passwordless-only alongside a legacy-client requirement — name the conflict, explain *why* it can't all hold, and ask another `AskUserQuestion` offering concrete ways to resolve it (relax one side, pay the cost, split the requirement). Never quietly pick the winner for them.
+1. **Restate the constraint** you're designing against (from their answers).
 2. **Pick the rung that fits.** Reuse before build, managed before self-hosted, boring before novel. Name the option.
 3. **Name the tradeoff.** Every choice costs something (consistency, ops burden, cost, latency). Say it.
 4. **Flag the non-negotiables.** Validation at trust boundaries, data-loss handling, auth, and observability are never dropped to "keep it simple."

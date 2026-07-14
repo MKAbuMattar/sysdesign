@@ -1,5 +1,7 @@
 # Networking
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): transport for the workload (TCP vs UDP) and latency/geography needs (single region vs global + CDN). They drive protocol and edge choices.
+
 ## OSI model, and where you actually reason
 
 Seven layers, top to bottom: Application, Presentation, Session, Transport, Network, Data Link, Physical. Memorize the names for interviews; in practice you design at three. **L3 (IP)**: addressing and routing between hosts. **L4 (TCP/UDP)**: ports, reliability, flow control. **L7 (HTTP/gRPC)**: the payload your service speaks. A load balancer is "L4" or "L7" depending on whether it routes by IP:port or by URL path — that one distinction decides whether it can do content-based routing.

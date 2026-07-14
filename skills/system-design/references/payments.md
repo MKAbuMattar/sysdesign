@@ -1,5 +1,7 @@
 # Payments & Fintech
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): integration (PSP/gateway vs direct acquiring), flows needed (one-off · deposits/holds · payouts · subscriptions), custody (ledger/wallet?), and PCI scope. Each reshapes the money path.
+
 ## Players & flow
 
 A card charge crosses five parties before money moves. Know each hop and where it can fail.

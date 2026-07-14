@@ -1,5 +1,7 @@
 # Architecture & Patterns
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): monolith vs microservices (and the team size that justifies it), orchestration vs choreography, and the fitting architectural pattern. These set the system's shape.
+
 ## Monolith vs microservices
 
 Start with a modular monolith. Split into services only when a concrete force demands it: independent scaling of one hot path, separate deploy cadence for separate teams, or a hard fault-isolation boundary. Microservices trade in-process calls for network calls — you buy independent deployability and pay in latency, partial failure, distributed transactions, and ops overhead.

@@ -1,5 +1,7 @@
 # Real-World Case Studies
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): which precedent fits the goal (feed · chat · media · marketplace · geo · payments) and the target scale. That picks which case actually transfers.
+
 Use these as interview talking points and design precedents. What transfers is the *reason* behind each choice, not the specific tech. When you cite one, name the constraint that forced the design.
 
 ## Patterns from real systems

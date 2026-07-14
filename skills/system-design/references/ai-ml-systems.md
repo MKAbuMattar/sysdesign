@@ -1,5 +1,7 @@
 # AI/ML Systems
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): grounding (RAG · fine-tune · prompt-only), model hosting (managed API vs self-hosted), and inference mode (real-time vs batch) with the latency/cost budget. These decide the ML architecture.
+
 ## Data pipeline
 
 The path is ingest → clean/transform → feature store → train → serve. The feature store is the seam that matters: it holds computed features once so training and serving read the same definition. Skip it and training-serving skew creeps in — the model learns on features computed differently from how they're computed live, and offline accuracy lies.

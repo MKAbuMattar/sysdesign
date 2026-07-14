@@ -1,5 +1,7 @@
 # OS & Concurrency
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): concurrency model (threads · async/event-loop · multiprocessing) and the language/runtime. They decide how the hot path is built.
+
 ## Process vs thread
 
 - **Process**: own address space, isolated. A crash or memory corruption stays contained. Communication goes through IPC (pipes, sockets, shared memory) — expensive to set up.

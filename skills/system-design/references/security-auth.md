@@ -1,5 +1,7 @@
 # Security & Auth
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): auth model (session-cookie · JWT · SSO via SAML/OIDC · passwordless/passkeys), permission model (RBAC · ABAC · ReBAC), and compliance scope. Each changes the whole auth path.
+
 ## Session vs token
 
 - **Session + cookie**: server stores session, client holds an opaque cookie. Easy to revoke, stateful, needs shared session store to scale. Set `HttpOnly`, `Secure`, `SameSite`.

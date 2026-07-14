@@ -1,5 +1,7 @@
 # Scale & Distributed Systems
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): scale target (QPS / regions), availability target (single- vs multi-region, RTO/RPO), and consistency model. They set how far up the scaling ladder to climb.
+
 ## Scaling ladder
 
 Vertical (bigger box) → stateless horizontal + LB → read replicas → caching → async/queues → sharding → multi-region. Climb only when the current rung is exhausted. Statelessness is what makes horizontal scaling cheap — push session/state to Redis/DB.

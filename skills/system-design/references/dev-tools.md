@@ -1,5 +1,7 @@
 # Dev Tools & Productivity
 
+> **Ask first** (`AskUserQuestion`, options + "Other"): branching model (trunk-based vs git-flow), CI/CD platform, and how code ships to prod. They set the team's workflow.
+
 ## Git mental model
 
 Three places a change lives before it leaves your machine:
