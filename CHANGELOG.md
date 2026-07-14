@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.7.0] - 2026-07-14
+
+### Added
+
+- **Cost model.** Every plan now includes a rough monthly **cost table** — order-of-magnitude for
+  the big line items (CDN/egress, primary DB, search, compute, storage) derived from the capacity
+  estimate — and names the dominant cost.
+- **Money/critical-path sequence diagram.** The architecture section now includes a Mermaid
+  `sequenceDiagram` for the reserve → deposit → webhook → ledger → payout flow, not just a flowchart.
+
+### Changed
+
+- Plan template and skill mandate `<br/>` (never `\n`) in Mermaid labels so diagrams render.
+- `validate.sh` and CI now enforce that **every reference keeps its Ask-first (`AskUserQuestion`)
+  note**, alongside the existing manifest / self-contained / mapping / frontmatter checks.
+
 ## [0.6.0] - 2026-07-14
 
 ### Added
@@ -73,6 +89,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.7.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.0
 [0.6.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.6.0
 [0.5.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.5.0
 [0.4.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.4.0

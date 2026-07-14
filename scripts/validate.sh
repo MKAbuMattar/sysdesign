@@ -31,6 +31,13 @@ for f in skills/system-design/references/*.md; do
 done
 [ "$fail" -eq 0 ] && ok "all reference files mapped in SKILL.md"
 
+# 3b. Every reference surfaces its clarify-first questions (the Ask-first convention).
+miss_ask=0
+for f in skills/system-design/references/*.md; do
+  grep -q "AskUserQuestion" "$f" || { bad "references/$(basename "$f") has no AskUserQuestion / Ask-first note"; miss_ask=1; }
+done
+[ "$miss_ask" -eq 0 ] && ok "every reference has its Ask-first note"
+
 # 4. SKILL.md and every command declare YAML frontmatter.
 for f in skills/system-design/SKILL.md commands/*.md; do
   [ "$(head -1 "$f")" = "---" ] || bad "$f missing frontmatter"

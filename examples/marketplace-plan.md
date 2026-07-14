@@ -29,6 +29,19 @@ a real run would derive every number from the user's own `AskUserQuestion` answe
 - **Bottleneck: read + image egress.** The money path is small; spend the budget on CDN, blob,
   search, and cache — not on write scale.
 
+**Rough monthly cost (order-of-magnitude, illustrative)**
+
+| Line item | Driver | ~$/mo |
+|---|---|---|
+| CDN egress | ~3.6 PB/mo (120 TB/day), multi-CDN, committed-use | **$70–140k (dominant)** |
+| Compute | ~a dozen services + transcode/feed workers | $8–15k |
+| Primary DB (HA + money replica) | ~300 GB, HA | $6–12k |
+| Object storage | ~250 TB hot + cold tiers | $5–9k |
+| Search | 2M docs, HA, replicas | $4–8k |
+| Bus + warehouse | event fan-out + analytics | $2–5k |
+
+**Dominant cost: CDN egress** — every media lever (AVIF, >95% hit, multi-CDN, per-dealer quotas) targets this line, not the transactional core.
+
 ## 3. Data model
 
 - **Postgres (source of truth):** `users`, `listings` (fk seller, specs, price, status,
@@ -81,6 +94,24 @@ Kafka via the **outbox**; the indexer updates Elasticsearch asynchronously.
 | Deploy | **Kubernetes**, rolling + canary | cluster ops (managed control plane) |
 
 ## 7. Money path (deposits)
+
+```mermaid
+sequenceDiagram
+  actor B as Buyer
+  participant R as Reservation svc
+  participant DB as Postgres<br/>(unique guard)
+  participant P as Payment svc
+  participant PSP as PSP
+  participant L as Ledger<br/>(append-only)
+  B->>R: reserve (Idempotency-Key)
+  R->>DB: flip active to reserved
+  DB-->>R: won (unique partial index)
+  R->>P: create deposit intent
+  P->>PSP: payment intent (tokenized)
+  PSP-->>P: webhook paid (HMAC + dedup)
+  P->>L: double-entry: debit buyer / credit escrow
+  Note over L: later - capture then payout minus fee, or refund
+```
 
 Authorize a hold via the PSP (idempotency key), record a pending `ledger_entry`; on reservation
 success **capture**, else **refund**. The ledger is append-only, double-entry, reconciled daily
