@@ -80,6 +80,27 @@ Every answer follows the same three moves:
 
 Validation at trust boundaries, data-loss handling, auth, and observability are never dropped to "keep it simple."
 
+## What `/plan` does
+
+The flagship command doesn't guess. It runs a short interview first, one system area per round, then writes a complete plan into a `.sysdesign-<project>/` folder in your repo.
+
+<p align="center">
+  <img src="assets/demo.gif" alt="A /sysdesign:plan session: it interviews you one area per round, flags a conflict, then writes PLAN.md and requirements.md" width="720">
+</p>
+
+```text
+$ /sysdesign:plan a car marketplace
+▸ round 1/9  product & scope     dealers + private sellers? on-platform payments?
+▸ round 2/9  users & scale       ~2M listings, 10M MAU, read-heavy
+▸ round 3/9  data & consistency  strong on reservations, eventual on search
+   … auth · payments · media & search · infra · reliability …
+! conflict: 99.95% everywhere vs a team of 8. which wins?
+✓ requirements locked → writing .sysdesign-carbazaar/PLAN.md + requirements.md
+✓ validation round: confirm the design, resolve anything residual
+```
+
+It never invents a requirement, pushes back when your answers conflict, and closes by validating the finished design. For an existing system reach for `/sysdesign:evolve`; to look something up, `/sysdesign:find`.
+
 ## Commands
 
 Ten thin wrappers over the one `system-design` skill, so the reasoning stays consistent.
