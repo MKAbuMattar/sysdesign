@@ -1,20 +1,24 @@
 ---
 // Three.js node-field behind the hero: the hub-and-spoke brand at scale.
 // Bolder pass: additive-blended points, glowing + pulsing brand hubs, depth fog,
-// scroll-scrubbed camera dolly, cursor parallax. Reduced-motion-gated, masked off the copy.
+// scroll-scrubbed camera dolly, cursor parallax.
+// Three (~530 KB) is dynamic-imported and gated: skipped on reduced-motion, small screens,
+// and Save-Data, so most of the weight never ships to people who would not see it.
 ---
 
 <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
 <script>
-  import * as THREE from "three";
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-
   const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement | null;
-  if (canvas && canvas.parentElement) {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const small = matchMedia("(max-width: 760px)").matches;
+  const saveData = (navigator as any).connection?.saveData === true;
+
+  if (canvas && canvas.parentElement && !reduced && !small && !saveData) {
     const host: HTMLElement = canvas.parentElement;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const THREE = await import("three");
+    const { default: gsap } = await import("gsap");
+    const { default: ScrollTrigger } = await import("gsap/ScrollTrigger");
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x0e1116, 0.022);
@@ -27,7 +31,7 @@
 
     const COUNT = 120;
     const RX = 22, RY = 14, RZ = 15;
-    const pts: THREE.Vector3[] = [];
+    const pts: InstanceType<typeof THREE.Vector3>[] = [];
     for (let i = 0; i < COUNT; i++)
       pts.push(new THREE.Vector3((Math.random() - 0.5) * RX * 2, (Math.random() - 0.5) * RY * 2, (Math.random() - 0.5) * RZ * 2));
 
@@ -45,8 +49,7 @@
     lGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePos, 3));
     group.add(new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({ color: 0x3a465a, transparent: true, opacity: 0.4 })));
 
-    // soft radial glow texture for the hub halos
-    function glowTexture(): THREE.CanvasTexture {
+    function glowTexture(): InstanceType<typeof THREE.CanvasTexture> {
       const c = document.createElement("canvas");
       c.width = c.height = 64;
       const g = c.getContext("2d")!;
@@ -59,7 +62,7 @@
       return new THREE.CanvasTexture(c);
     }
     const glow = glowTexture();
-    const hubs: THREE.Sprite[] = [];
+    const hubs: InstanceType<typeof THREE.Sprite>[] = [];
     [0x5b8def, 0x3bb89a, 0xe0a458].forEach((c, i) => {
       const a = (i / 3) * Math.PI * 2 - Math.PI / 2;
       const pos = new THREE.Vector3(Math.cos(a) * 9, Math.sin(a) * 6, 4);
@@ -94,25 +97,21 @@
       t += 0.016;
       group.rotation.y += 0.0009;
       group.rotation.x += 0.0004;
-      camera.position.z = camZ + scrollP * 16;      // scroll dolly-out
-      group.rotation.y += scrollP * 0.6;            // extra spin as you scroll
+      camera.position.z = camZ + scrollP * 16;
+      group.rotation.y += scrollP * 0.6;
       camera.position.x += (mx * 5 - camera.position.x) * 0.04;
       camera.position.y += (-my * 3.5 - camera.position.y) * 0.04;
-      hubs.forEach((h, i) => { const s = 5 + Math.sin(t * 1.5 + i * 2) * 0.8; h.scale.set(s, s, 1); }); // pulse
+      hubs.forEach((h, i) => { const s = 5 + Math.sin(t * 1.5 + i * 2) * 0.8; h.scale.set(s, s, 1); });
       camera.lookAt(0, 0, 0);
       renderer.render(scene, camera);
     }
 
-    if (reduced) {
-      render();
-    } else {
-      gsap.registerPlugin(ScrollTrigger);
-      ScrollTrigger.create({ trigger: host, start: "top top", end: "bottom top", scrub: true, onUpdate: (st) => { scrollP = st.progress; } });
-      let raf = 0;
-      const loop = () => { render(); raf = requestAnimationFrame(loop); };
-      loop();
-      document.addEventListener("visibilitychange", () => { cancelAnimationFrame(raf); if (!document.hidden) loop(); });
-    }
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({ trigger: host, start: "top top", end: "bottom top", scrub: true, onUpdate: (st) => { scrollP = st.progress; } });
+    let raf = 0;
+    const loop = () => { render(); raf = requestAnimationFrame(loop); };
+    loop();
+    document.addEventListener("visibilitychange", () => { cancelAnimationFrame(raf); if (!document.hidden) loop(); });
   }
 </script>
 

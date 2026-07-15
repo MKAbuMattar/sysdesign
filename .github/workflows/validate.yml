@@ -14,5 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate plugin
+      - name: Validate plugin (repo checks)
         run: bash scripts/validate.sh
+      - name: Official plugin validate (best-effort)
+        run: |
+          npm i -g @anthropic-ai/claude-code >/dev/null 2>&1 || { echo "::warning::could not install the claude CLI"; exit 0; }
+          claude plugin validate . --strict || echo "::warning::claude plugin validate reported issues or is unavailable in this CLI version"
