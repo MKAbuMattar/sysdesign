@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.7.2] - 2026-07-15
+
+### Changed
+
+- Broaden the skill's auto-invoke `description` to name all fourteen reference domains
+  (adds payments, networking, OS & concurrency, AI/ML systems, and architecture patterns), so
+  the skill activates on those prompts, not just the original set.
+
 ## [0.7.1] - 2026-07-15
 
 ### Added
@@ -97,6 +105,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.7.2]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.2
 [0.7.1]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.1
 [0.7.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.0
 [0.6.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.6.0

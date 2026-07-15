@@ -1,6 +1,6 @@
 ---
 name: system-design
-description: Use when designing, reviewing, or explaining backend/distributed system architecture — API styles, databases and storage, caching, messaging, scalability, resiliency, security/auth, DevOps/Kubernetes deployment, or preparing for a system design interview.
+description: Use when designing, reviewing, explaining, or estimating backend and distributed system architecture — API and web, databases and storage, caching and performance, networking, scalability and resiliency, security and auth, payments and fintech, AI/ML systems, DevOps and Kubernetes, OS and concurrency, software architecture patterns, real-world case studies, or preparing for a system design interview.
 ---
 
 # System Design
