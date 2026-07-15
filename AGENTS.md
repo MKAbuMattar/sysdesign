@@ -47,6 +47,7 @@ There is no compiler; "validation" is one script (the source of truth CI also ru
 | `bash scripts/validate.sh` | Manifests parse + versions match, zero external links in `skills/`, every reference file mapped in SKILL.md, frontmatter present. **Must pass before commit.** |
 | `uv run scripts/export.py` | Build the shareable bundle (numbered md + PDF + docx) from the reference files into git-ignored `dist/`. Optional. |
 | `python3 scripts/lint-prose.py` | Per-file editorial report (banned AI-tell vocab, external links, em-dash density, Ask-first note). Hard issues also fail `validate.sh`. |
+| `python3 scripts/search.py <terms>` | Section-level ranked search over the references (returns the matching `##` block, not just a line). `--top N`, `--full`. |
 | `grep -rnE '(#\|//) ?ponytail:' .` | Deferred-shortcut ledger (should be empty for this repo). |
 
 Test a change by loading the skill/command in Claude Code and running a real query
