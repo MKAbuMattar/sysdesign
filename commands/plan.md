@@ -1,5 +1,6 @@
 ---
 description: Design a system end to end — a full multi-round requirements interview, then a complete plan
+argument-hint: [system to design]
 ---
 
 Use the `system-design` skill. Build a full system-design plan for: `$ARGUMENTS`.

@@ -1,5 +1,6 @@
 ---
 description: Choose a component (DB, queue, cache, deployment strategy) under real constraints
+argument-hint: [component + constraints]
 ---
 
 Use the `system-design` skill. Help choose: `$ARGUMENTS`.

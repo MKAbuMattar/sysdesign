@@ -1,5 +1,6 @@
 ---
 description: Pressure-test an architecture or diagram for gaps, SPOFs, and missing safeguards
+argument-hint: [architecture or file]
 ---
 
 Use the `system-design` skill. Review the architecture the user describes or the diagram/file they point to: `$ARGUMENTS`.

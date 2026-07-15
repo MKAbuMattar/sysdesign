@@ -1,5 +1,6 @@
 ---
 description: Name the tradeoffs of a design choice or architecture
+argument-hint: [choice or design]
 ---
 
 Use the `system-design` skill. Subject: `$ARGUMENTS`.

@@ -1,5 +1,6 @@
 ---
 description: Produce a quick-reference cheatsheet for a system design area
+argument-hint: [area]
 ---
 
 Use the `system-design` skill. Area: `$ARGUMENTS`.

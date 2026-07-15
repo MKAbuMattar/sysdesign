@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.7.1] - 2026-07-15
+
+### Added
+
+- **`argument-hint`** on every command (e.g. `/sysdesign:plan [system to design]`), so the
+  slash-command menu shows what each expects — a documented Claude Code best practice.
+- **`repository`** field in `plugin.json` (the documented, recommended source-code URL).
+
 ## [0.7.0] - 2026-07-14
 
 ### Added
@@ -89,6 +97,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.7.1]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.1
 [0.7.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.0
 [0.6.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.6.0
 [0.5.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.5.0

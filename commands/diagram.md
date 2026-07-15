@@ -1,5 +1,6 @@
 ---
 description: Sketch a system architecture as a Mermaid (or ASCII) diagram
+argument-hint: [system]
 ---
 
 Use the `system-design` skill. Diagram: `$ARGUMENTS`.

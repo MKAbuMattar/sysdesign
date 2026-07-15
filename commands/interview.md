@@ -1,5 +1,6 @@
 ---
 description: Run system design interview prep — framework, a problem, or a topic drill
+argument-hint: [problem | topic]
 ---
 
 Use the `system-design` skill, `references/interview.md`. Topic: `$ARGUMENTS`.

@@ -1,5 +1,6 @@
 ---
 description: Compare two or more system design options and recommend one for a stated constraint
+argument-hint: [option vs option]
 ---
 
 Use the `system-design` skill. The user wants to compare: `$ARGUMENTS`.

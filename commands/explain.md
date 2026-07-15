@@ -1,5 +1,6 @@
 ---
 description: Explain a system design concept clearly, with tradeoffs and when to use it
+argument-hint: [concept]
 ---
 
 Use the `system-design` skill. The user wants concept `$ARGUMENTS` explained.

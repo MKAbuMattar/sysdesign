@@ -1,5 +1,6 @@
 ---
 description: Back-of-envelope capacity estimate — QPS, storage, bandwidth, memory
+argument-hint: [system + scale]
 ---
 
 Use the `system-design` skill, `references/interview.md`. Estimate for: `$ARGUMENTS`.
