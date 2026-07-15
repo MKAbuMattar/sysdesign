@@ -102,12 +102,15 @@ def build_bundle(out: Path) -> str:
     sections = ["# System Design — Reference Standard\n",
                 "A self-contained, tradeoff-first reference. Generic; not tied to any stack or vendor.\n",
                 "## Contents\n"]
+    # ORDER sets the curriculum sequence; append any reference not listed so a newly
+    # added file is never silently dropped from the bundle.
+    listed = [f for f in ORDER if (REF_DIR / f).exists()]
+    extra = sorted(p.name for p in REF_DIR.glob("*.md") if p.name not in ORDER)
+    for f in extra:
+        logger.warning("reference not in ORDER, appending at end: %s", f)
     bodies, n = [], 0
-    for fname in ORDER:
+    for fname in listed + extra:
         path = REF_DIR / fname
-        if not path.exists():
-            logger.warning("skipping missing reference: %s", fname)
-            continue
         n += 1
         title, body = read_reference(path)
         sections.append(f"{n}. {title}")
