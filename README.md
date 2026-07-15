@@ -8,7 +8,7 @@
   <a href="https://github.com/mkabumattar/sysdesign/blob/main/LICENSE"><img src="https://img.shields.io/github/license/mkabumattar/sysdesign?color=e0a458" alt="license"></a>
   <a href="#install"><img src="https://img.shields.io/badge/Claude_Code-plugin-5b8def" alt="Claude Code plugin"></a>
   <img src="https://img.shields.io/badge/skill-1-3bb89a" alt="1 skill">
-  <img src="https://img.shields.io/badge/commands-11-e0a458" alt="11 commands">
+  <img src="https://img.shields.io/badge/commands-13-e0a458" alt="13 commands">
   <img src="https://img.shields.io/badge/reference_files-14-5b8def" alt="14 reference files">
   <img src="https://img.shields.io/badge/knowledge-self--contained-3bb89a" alt="self-contained, no external links">
   <a href="https://sysdesign.mkabumattar.com"><img src="https://img.shields.io/badge/site-sysdesign.mkabumattar.com-5b8def" alt="website"></a>
@@ -16,7 +16,7 @@
 
 # sysdesign
 
-**System design knowledge, wired into your AI agent.** A [Claude Code](https://claude.com/claude-code) plugin: one skill, eleven commands, and fourteen self-contained reference files. Explain a concept, compare options, pressure-test an architecture, estimate capacity, or prep an interview — with tradeoffs stated, not hand-waved.
+**System design knowledge, wired into your AI agent.** A [Claude Code](https://claude.com/claude-code) plugin: one skill, thirteen commands, and fourteen self-contained reference files. Explain a concept, compare options, pressure-test an architecture, estimate capacity, or prep an interview — with tradeoffs stated, not hand-waved.
 
 The knowledge lives in the files. There are **no external links inside the skill** — the agent loads the one reference a task needs, and the answer is right there. Original prose, inspired by the taxonomy of [ByteByteGo's *System Design 101*](https://github.com/ByteByteGoHq/system-design-101), never copied from it.
 
@@ -87,7 +87,9 @@ Ten thin wrappers over the one `system-design` skill, so the reasoning stays con
 | Command | What it does |
 | --- | --- |
 | `/sysdesign:plan <system>` | Design end to end — a full multi-round interview, then a complete plan |
+| `/sysdesign:evolve <current → goal>` | Evolve/migrate an existing system with a rollback-safe path |
 | `/sysdesign:explain <concept>` | Explain a concept with tradeoffs and when to use it |
+| `/sysdesign:find <term>` | Search the references and surface the covering sections |
 | `/sysdesign:compare <a> vs <b>` | Compare options, recommend one for your constraint |
 | `/sysdesign:review <architecture>` | Pressure-test a design for SPOFs and missing safeguards |
 | `/sysdesign:choose <component>` | Pick a DB / queue / cache / deploy strategy under constraints |

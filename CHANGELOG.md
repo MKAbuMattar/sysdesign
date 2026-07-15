@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.9.0] - 2026-07-15
+
+### Added
+
+- **`/sysdesign:evolve`** — brownfield companion to `plan`: maps the current system, names the
+  forcing function, then designs the target state and a **rollback-safe migration path**
+  (strangler-fig, dual-write + backfill, cutover) with the metric that gates each step.
+- Command glyphs for `find` and `evolve` (`assets/commands/`), and both wired into the site.
+
 ## [0.8.0] - 2026-07-15
 
 ### Added
@@ -113,6 +122,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.9.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.9.0
 [0.8.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.8.0
 [0.7.2]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.2
 [0.7.1]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.1

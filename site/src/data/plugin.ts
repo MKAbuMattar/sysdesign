@@ -15,10 +15,22 @@ export const commands: readonly Command[] = [
     example: "/sysdesign:plan a car marketplace",
   },
   {
+    name: "evolve",
+    short: "migrate an existing system, rollback-safe path",
+    long: "Brownfield companion to plan: maps the current system, names the forcing function, then designs the target state and a rollback-safe migration path (strangler-fig, dual-write + backfill, cutover) with the metric that gates each step.",
+    example: "/sysdesign:evolve monolith on one Postgres → read replicas + a queue",
+  },
+  {
     name: "explain",
     short: "what it is, when to use it, the tradeoff",
     long: "Explains a concept in plain terms: what it is, when to reach for it and when not to, the tradeoff it makes, and one concrete example. Tight, not a textbook.",
     example: "/sysdesign:explain consistent hashing",
+  },
+  {
+    name: "find",
+    short: "search the references, surface the covering sections",
+    long: "Searches all reference files and returns the specific sections that cover a term, ranked and pointing to each source by name. Discovery across the whole knowledge base, distinct from explain, which teaches one concept in depth.",
+    example: "/sysdesign:find idempotency",
   },
   {
     name: "compare",
