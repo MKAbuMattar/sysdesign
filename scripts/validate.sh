@@ -43,5 +43,12 @@ for f in skills/system-design/SKILL.md commands/*.md; do
   [ "$(head -1 "$f")" = "---" ] || bad "$f missing frontmatter"
 done
 
+# 5. Editorial bans in the reference prose (AI-tell vocab, external links, Ask-first note).
+if command -v python3 >/dev/null 2>&1; then
+  if python3 scripts/lint-prose.py >/dev/null 2>&1; then ok "prose lint (no banned vocab / links)"; else bad "prose lint failed — run: python3 scripts/lint-prose.py"; fi
+else
+  ok "prose lint skipped (no python3)"
+fi
+
 echo
 [ "$fail" -eq 0 ] && echo "validate: PASS" || { echo "validate: FAIL"; exit 1; }
