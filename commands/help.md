@@ -10,6 +10,7 @@ sysdesign — system design knowledge, self-contained
 commands
   /sysdesign:plan <system>            design end to end: full interview → complete plan
   /sysdesign:explain <concept>        what it is, when to use it, the tradeoff
+  /sysdesign:find <term>              search the references, surface the covering sections
   /sysdesign:compare <a> vs <b>       compare options, recommend one for a constraint
   /sysdesign:review <architecture>    pressure-test for SPOFs and missing safeguards
   /sysdesign:choose <component>       pick a DB/queue/cache/deploy under constraints
