@@ -30,7 +30,7 @@ CI: build → test → scan → sign → push artifact. CD: deploy via GitOps (A
 
 ## Observability
 
-Three pillars: **metrics** (Prometheus/Grafana — rates, saturation, errors), **logs** (structured, shipped to a store — ELK/Loki), **traces** (OpenTelemetry — follow a request across services). Alert on symptoms users feel (latency, error rate, saturation — the RED/USE methods), not on every internal blip. SLOs and error budgets keep alerting honest.
+Metrics, logs, traces; alert on symptoms users feel, with SLOs and error budgets keeping alerting honest. The full treatment (pillars and their costs, RED/USE, alerting philosophy, runbooks): see `observability.md`.
 
 ## DevOps vs SRE vs Platform Engineering
 

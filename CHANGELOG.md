@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.11.0] - 2026-07-16
+
+### Added
+
+- **`references/observability.md`** — observability split out of `devops-k8s.md` into its own
+  reference (15th): SLOs/SLIs/error budgets with the downtime-budget table, the three pillars
+  and what each costs (cardinality, log volume, trace sampling), RED and USE, alerting
+  philosophy (page on symptoms, runbooks, alert fatigue), dashboards and runbooks.
+- **`ROADMAP.md`** — the paced improvement queue (one 1–2 day increment at a time), tracked
+  in-repo with a status column.
+
+### Changed
+
+- `devops-k8s.md` trims its observability section to a pointer; the skill trigger, reference
+  map, help card, export order, README, and site counts all sync to fifteen references.
+
 ## [0.10.0] - 2026-07-16
 
 ### Changed
@@ -133,6 +149,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.11.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.0
 [0.10.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.10.0
 [0.9.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.9.0
 [0.8.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.8.0

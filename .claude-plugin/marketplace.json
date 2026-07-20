@@ -9,8 +9,8 @@
       "name": "sysdesign",
       "source": "./",
       "icon": "./assets/icon.svg",
-      "description": "System design knowledge for AI coding agents. 1 skill, 13 self-contained commands, and 14 original-prose reference files — no external links.",
-      "version": "0.10.0",
+      "description": "System design knowledge for AI coding agents. 1 skill, 13 self-contained commands, and 15 original-prose reference files — no external links.",
+      "version": "0.11.0",
       "category": "productivity",
       "homepage": "https://github.com/mkabumattar/sysdesign",
       "tags": ["system-design", "architecture", "distributed-systems", "interview-prep", "skills", "commands"]

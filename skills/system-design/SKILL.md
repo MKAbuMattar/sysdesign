@@ -1,6 +1,6 @@
 ---
 name: system-design
-description: Use when designing, reviewing, explaining, or estimating backend and distributed system architecture — API and web, databases and storage, caching and performance, networking, scalability and resiliency, security and auth, payments and fintech, AI/ML systems, DevOps and Kubernetes, OS and concurrency, software architecture patterns, real-world case studies, or preparing for a system design interview.
+description: Use when designing, reviewing, explaining, or estimating backend and distributed system architecture — API and web, databases and storage, caching and performance, networking, scalability and resiliency, security and auth, payments and fintech, AI/ML systems, DevOps and Kubernetes, observability and SLOs, OS and concurrency, software architecture patterns, real-world case studies, or preparing for a system design interview.
 ---
 
 # System Design
@@ -32,7 +32,8 @@ Load the file that matches the topic. Each is a standalone quick-reference.
 | Caching & performance | `references/caching-performance.md` | cache strategies, eviction, stampede, CDN, Redis, latency budgets |
 | Scale & distributed | `references/distributed-systems.md` | scalability strategies, resiliency/retry/idempotency, fault tolerance, unique IDs, IaC, 12-factor |
 | Security & auth | `references/security-auth.md` | sessions/cookies/JWT, OAuth 2.0 flows, SSO, encryption vs encoding vs tokenization, secrets, permissions |
-| DevOps & K8s | `references/devops-k8s.md` | K8s patterns & service types, deployment strategies, Docker best practices, CI/CD, observability |
+| DevOps & K8s | `references/devops-k8s.md` | K8s patterns & service types, deployment strategies, Docker best practices, CI/CD |
+| Observability | `references/observability.md` | SLOs/SLIs/error budgets, metrics/logs/traces and their costs, RED/USE, alerting philosophy, runbooks |
 | Architecture & patterns | `references/architecture-patterns.md` | monolith vs microservices, architectural patterns, orchestration vs choreography, DDD, design patterns |
 | Case studies | `references/case-studies.md` | real-world architectures (Netflix, Uber, Discord, Figma...) and classic "design X" problems |
 | Networking | `references/networking.md` | OSI, TCP/UDP, IP/NAT, DNS, protocols & ports, latency/geography |
