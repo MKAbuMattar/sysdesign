@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.10.0] - 2026-07-16
+
+### Changed
+
+- **`/sysdesign:plan` resumes instead of restarting.** If `.sysdesign-<project>/requirements.md`
+  already exists, the command reads it and asks whether to resume (re-interview only the areas
+  you want to change) or start over — it never silently overwrites a locked plan.
+- **`/sysdesign:evolve` gains the same output convention as `plan`**: the current-state map and
+  constraints go to `.sysdesign-<project>/requirements.md`, the target design and migration path
+  to `EVOLUTION.md`, building on any prior plan files instead of clobbering them.
+
 ## [0.9.0] - 2026-07-15
 
 ### Added
@@ -122,6 +133,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.10.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.10.0
 [0.9.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.9.0
 [0.8.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.8.0
 [0.7.2]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.7.2
