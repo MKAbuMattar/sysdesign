@@ -20,17 +20,17 @@ its reference files) plus two JSON manifests. It installs via
 - `.claude-plugin/plugin.json` — plugin manifest (name, version, description, keywords).
 - `.claude-plugin/marketplace.json` — marketplace entry (source `./`, category, tags).
 - `skills/system-design/SKILL.md` — the router: overview, when-to-use, reference map, how-to-answer, attribution.
-- `skills/system-design/references/*.md` — nine self-contained topic files. The agent loads only the one a task needs.
+- `skills/system-design/references/*.md` — fifteen self-contained topic files. The agent loads only the one a task needs.
 - `commands/*.md` — one file per `/sysdesign:<verb>` slash command (thin wrappers that invoke the skill).
 - `artifacts/` — generic, shareable outputs: `diagrams/*.mmd` (Mermaid sources) + a README index. Built into git-ignored `dist/` by `scripts/export.py`. Nothing here is project- or vendor-specific.
 - `scripts/` — `validate.sh` (checks) and `export.py` (bundle builder). Both self-contained; `export.py` is a uv/PEP 723 script (no config, no network).
 - `assets/` — `logo.svg` (horizontal lockup) + `icon.svg` (square mark). Self-contained SVG, no external fonts/assets. Amber-on-ink; generic (a distributed-node / CAP-tradeoff triangle).
-- `README.md` — human-facing install + overview. `LICENSE` — MIT.
+- `README.md` — human-facing install + overview. `LICENSE` — MIT. `ROADMAP.md` — the paced improvement queue (one increment per day or two; update its status column when an increment ships).
 
 ## Reference files (the knowledge)
 
 `api-web` · `data-storage` · `caching-performance` · `distributed-systems` ·
-`security-auth` · `devops-k8s` · `architecture-patterns` · `case-studies` ·
+`security-auth` · `devops-k8s` · `observability` · `architecture-patterns` · `case-studies` ·
 `networking` · `os-concurrency` · `payments` · `ai-ml-systems` · `dev-tools` · `interview`
 
 Each stands alone: dense original prose, tradeoff-first, no external links. Each opens with an
