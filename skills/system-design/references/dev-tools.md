@@ -14,7 +14,7 @@ History is a **DAG**, not a line: each commit points at its parent(s), a merge c
 
 - **HEAD**: where you are now, usually pointing at a branch.
 - **Branch**: a pointer to one commit that moves forward as you commit.
-- **Tag**: a pointer that never moves — pin a release (`v2.3.0`) to an exact commit.
+- **Tag**: a pointer that never moves: pin a release (`v2.3.0`) to an exact commit.
 
 The snapshot model is why branching is cheap (one pointer) and why a "lost" commit is usually still reachable via `git reflog`.
 
@@ -39,11 +39,11 @@ Match the strategy to release cadence and CI maturity, not to fashion.
 
 Trunk-based buys speed and tiny merges but demands flags and a green pipeline to stay safe; git-flow buys release control and staging discipline at the cost of merge pain and slower flow.
 
-**Git vs GitHub**: Git is the version-control tool that runs on your machine. GitHub (or GitLab, Bitbucket) is a host — a remote plus PRs, issues, CI hooks, access control. Git works fully offline; the host adds collaboration.
+**Git vs GitHub**: Git is the version-control tool that runs on your machine. GitHub (or GitLab, Bitbucket) is a host: a remote plus PRs, issues, CI hooks, access control. Git works fully offline; the host adds collaboration.
 
 ## Linux essentials
 
-**Permissions**: every file has `rwx` (read/write/execute) for owner, group, other. Octal encodes it — `r=4 w=2 x=1`, summed per role:
+**Permissions**: every file has `rwx` (read/write/execute) for owner, group, other. Octal encodes it as `r=4 w=2 x=1`, summed per role:
 
 - **755** (`rwxr-xr-x`): owner edits, everyone runs. Scripts, binaries.
 - **644** (`rw-r--r--`): owner edits, everyone reads. Config, data files.
@@ -55,7 +55,7 @@ Trunk-based buys speed and tiny merges but demands flags and a green pipeline to
 
 - **Inspect**: `ls -la`, `cat`, `less`, `stat`, `df -h`, `du -sh`.
 - **Find**: `find . -name '*.log'`, `grep -rn pattern`, `rg` if installed.
-- **Pipe**: `cmd | grep x | sort | uniq -c | sort -rn` — chain small tools; each reads stdin, writes stdout.
+- **Pipe**: `cmd | grep x | sort | uniq -c | sort -rn`: chain small tools; each reads stdin, writes stdout.
 - **Monitor**: `top`/`htop`, `ps aux`, `journalctl -u svc -f`, `netstat -tlnp`/`ss`.
 
 ## Debugging on a box
@@ -65,7 +65,7 @@ First read the vitals: `uptime` gives load averages (1/5/15 min); a load above c
 Common causes of one process pinning 100% CPU:
 
 - **Busy loop**: code spinning without yielding or blocking on I/O.
-- **GC thrash**: heap near full, collector running constantly — check memory before blaming logic.
+- **GC thrash**: heap near full, collector running constantly; check memory before blaming logic.
 - **Lock contention**: threads spinning on a contended lock (see os-concurrency.md).
 
 Then follow the logs: `tail -f` or `journalctl -f` while you reproduce, and `grep` the timestamp window around the incident.

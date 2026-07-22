@@ -11,7 +11,7 @@ one-line count syncs so it never drifts.
 |---|---|---|---|
 | 1 | 1–2 | **Observability reference** — split observability out of `devops-k8s.md` into `references/observability.md`: SLOs/SLIs/error budgets, the three pillars and their costs, RED/USE, alerting philosophy, runbooks. 15th reference. | ✅ v0.11.0 |
 | 2 | 3–4 | **Worked evolve example** — `examples/monolith-evolution.md`: monolith on one Postgres → strangler-fig + replicas + queue, rollback-gated steps. The brownfield depth bar, as `marketplace-plan.md` is for `/plan`. | ✅ done |
-| 3 | 5 | **Prose polish + hard gate** — convert excess em-dashes in the five references over the density guideline to colons/periods, then flip `lint-prose.py`'s density check from advisory to hard. | planned |
+| 3 | 5 | **Prose polish + hard gate** — convert excess em-dashes in the five references over the density guideline to colons/periods, then flip `lint-prose.py`'s density check from advisory to hard. | ✅ v0.11.1 |
 | 4 | 6–7 | **Cost-engineering reference** — `references/cost-engineering.md`: cloud unit economics, egress dominance, storage tiers, commitment discounts, cost-per-request math, the dominant-line-item method. 16th reference. | planned |
 | 5 | 8 | **Rendered diagrams in exports** — `scripts/export.py` renders `artifacts/diagrams/*.mmd` to SVG when `mmdc` is available and embeds real images in the PDF/docx bundle; raw fences stay as the fallback. Nothing generated is committed. | planned |
 | 6 | 9–10 | **Deepen case-studies** — the thinnest reference gains 3–4 more precedents (Stripe idempotency/ledger, Shopify flash-sale pods, Slack real-time messaging) in constraint→lesson framing. Original prose, license-clean. | planned |

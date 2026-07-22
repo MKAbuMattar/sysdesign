@@ -4,7 +4,7 @@
 
 ## Process vs thread
 
-- **Process**: own address space, isolated. A crash or memory corruption stays contained. Communication goes through IPC (pipes, sockets, shared memory) — expensive to set up.
+- **Process**: own address space, isolated. A crash or memory corruption stays contained. Communication goes through IPC (pipes, sockets, shared memory), which is expensive to set up.
 - **Thread**: shares the parent's heap and file descriptors. Cheap to spawn, fast to communicate (just read shared memory), but one bad pointer corrupts the whole process.
 - **Context-switch cost**: thread switch is ~1–5 µs; process switch adds TLB/cache flush overhead on top. Both dwarf a function call (~1 ns).
 
@@ -35,14 +35,14 @@ Event loop wins on memory and connection count: 100k idle sockets on one thread 
 
 - **Race condition**: correctness depends on timing between threads touching shared state. The bug that passes 999 runs and fails in production.
 - **Mutex**: mutual exclusion around a critical section. Held too long, it serializes everything behind it.
-- **Deadlock (four Coffman conditions, all required)**: mutual exclusion, hold-and-wait, no preemption, circular wait. Break any one — global lock ordering kills circular wait cheaply.
+- **Deadlock (four Coffman conditions, all required)**: mutual exclusion, hold-and-wait, no preemption, circular wait. Break any one; global lock ordering kills circular wait cheaply.
 - **Lock granularity**: coarse locks are easy and contended; fine-grained locks scale but multiply deadlock and correctness risk. Tradeoff: contention vs complexity.
 
 Prefer designs that avoid locks: immutability (nothing to protect), single-writer ownership (one thread owns the data, others message it), or lock-free structures (CAS-based, hard to get right). Reach for a mutex only when shared mutable state is unavoidable.
 
 ## Thread pools and bounded queues
 
-Fix the thread count near core count for CPU-bound work; size it higher for I/O-bound work where threads mostly wait. Feed the pool through a **bounded** queue: an unbounded queue hides overload until it OOMs. When the queue fills, block or reject — that rejection is backpressure (see distributed-systems.md).
+Fix the thread count near core count for CPU-bound work; size it higher for I/O-bound work where threads mostly wait. Feed the pool through a **bounded** queue: an unbounded queue hides overload until it OOMs. When the queue fills, block or reject; that rejection is backpressure (see distributed-systems.md).
 
 ## Virtual memory
 

@@ -79,9 +79,8 @@ def main() -> int:
     log.info("%-26s %6s %5s %5s  %s", "file", "words", "subs", "em—", "issues")
     for f in files:
         issues, s = lint(f)
-        # em-dash density alone is a soft warning; banned terms / links / missing note are hard
-        hard_here = [i for i in issues if "density" not in i]
-        hard += len(hard_here)
+        # every issue is hard: banned terms, links, missing Ask-first note, and em-dash density
+        hard += len(issues)
         flag = "  ".join(issues) if issues else "ok"
         log.info("%-26s %6d %5d %5d  %s", f.name, s["words"], s["subtopics"], s["emdash"], flag)
 

@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.11.1] - 2026-07-20
+
+### Changed
+
+- **Prose polish**: converted the excess em-dashes in `networking`, `dev-tools`,
+  `architecture-patterns`, and `os-concurrency` to colons/semicolons per the house style —
+  every reference is now within the ≤3-per-300-words guideline.
+- **`lint-prose.py` density check is now a hard failure** (was advisory), so em-dash creep
+  fails `validate.sh` and CI instead of accumulating silently.
+
 ## [0.11.0] - 2026-07-16
 
 ### Added
@@ -149,6 +159,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.11.1]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.1
 [0.11.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.0
 [0.10.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.10.0
 [0.9.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.9.0

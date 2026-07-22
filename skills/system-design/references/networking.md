@@ -4,7 +4,7 @@
 
 ## OSI model, and where you actually reason
 
-Seven layers, top to bottom: Application, Presentation, Session, Transport, Network, Data Link, Physical. Memorize the names for interviews; in practice you design at three. **L3 (IP)**: addressing and routing between hosts. **L4 (TCP/UDP)**: ports, reliability, flow control. **L7 (HTTP/gRPC)**: the payload your service speaks. A load balancer is "L4" or "L7" depending on whether it routes by IP:port or by URL path — that one distinction decides whether it can do content-based routing.
+Seven layers, top to bottom: Application, Presentation, Session, Transport, Network, Data Link, Physical. Memorize the names for interviews; in practice you design at three. **L3 (IP)**: addressing and routing between hosts. **L4 (TCP/UDP)**: ports, reliability, flow control. **L7 (HTTP/gRPC)**: the payload your service speaks. A load balancer is "L4" or "L7" depending on whether it routes by IP:port or by URL path; that one distinction decides whether it can do content-based routing.
 
 ## TCP vs UDP
 
@@ -16,11 +16,11 @@ TCP is a reliable, ordered, connection-oriented byte stream: 3-way handshake (SY
 | Lowest latency, loss-tolerant (video, games, DNS) | UDP |
 | Custom reliability without TCP's cost | UDP + app-level acks (QUIC does this) |
 
-The tradeoff is reliability vs latency: TCP's ordering guarantee causes **head-of-line blocking** — one lost segment stalls every byte behind it until the retransmit lands. UDP never blocks because it never promises order; you pay by rebuilding whatever reliability you need yourself.
+The tradeoff is reliability vs latency: TCP's ordering guarantee causes **head-of-line blocking**: one lost segment stalls every byte behind it until the retransmit lands. UDP never blocks because it never promises order; you pay by rebuilding whatever reliability you need yourself.
 
 ## IP, IPv4 vs IPv6, NAT
 
-An IP address identifies a host on L3. IPv4 is 32-bit: ~4.3 billion addresses, exhausted years ago. IPv6 is 128-bit: address space stops being the constraint, and it drops NAT and broadcast for cleaner routing. The tradeoff is adoption cost: dual-stack operation and legacy gear keep IPv4 alive, so you run both. **NAT** exists to stretch IPv4 — many private addresses (`10.x`, `192.168.x`) share one public address, the router rewriting ports on the way out. It bought a decade but breaks inbound connections and end-to-end addressing, which is part of why IPv6 wants it gone.
+An IP address identifies a host on L3. IPv4 is 32-bit: ~4.3 billion addresses, exhausted years ago. IPv6 is 128-bit: address space stops being the constraint, and it drops NAT and broadcast for cleaner routing. The tradeoff is adoption cost: dual-stack operation and legacy gear keep IPv4 alive, so you run both. **NAT** exists to stretch IPv4: many private addresses (`10.x`, `192.168.x`) share one public address, the router rewriting ports on the way out. It bought a decade but breaks inbound connections and end-to-end addressing, which is part of why IPv6 wants it gone.
 
 ## DNS
 
@@ -29,7 +29,7 @@ Resolution walks a hierarchy: your **recursive resolver** asks a **root** server
 - **A / AAAA**: name → IPv4 / IPv6 address.
 - **CNAME**: name → another name (alias). Can't coexist with other records at the same node.
 - **MX**: mail servers for the domain.
-- **TXT**: arbitrary text — SPF, domain verification.
+- **TXT**: arbitrary text (SPF, domain verification).
 
 TTL is the freshness-vs-load tradeoff: a 24h TTL slashes resolver traffic but means a changed record (a failover, a new IP) is stale for up to a day across the internet. Drop TTL to 60s before a planned cutover, raise it after. The stale-record trap: resolvers and OS caches often ignore your TTL and hold longer, so never treat DNS as an instant switch.
 
@@ -41,7 +41,7 @@ TTL is the freshness-vs-load tradeoff: a 24h TTL slashes resolver traffic but me
 - **WebSocket**: upgrades an HTTP connection to full-duplex; use for push/live, not for request/response you could cache.
 - **gRPC**: HTTP/2 + protobuf, typed contracts and streaming — strong for internal service-to-service, weak where you need browser or human-readable calls.
 
-Delivery scope: **unicast** (one-to-one, the default), **multicast** (one-to-many on a subnet), **anycast** (one address, many locations, routed to the nearest). Anycast is why a single CDN or public DNS IP resolves to the closest edge. HTTP version details live in api-web.md — don't duplicate them here.
+Delivery scope: **unicast** (one-to-one, the default), **multicast** (one-to-many on a subnet), **anycast** (one address, many locations, routed to the nearest). Anycast is why a single CDN or public DNS IP resolves to the closest edge. HTTP version details live in api-web.md; don't duplicate them here.
 
 ## Ports worth knowing
 

@@ -1,6 +1,6 @@
 {
   "name": "sysdesign",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "System design knowledge for AI coding agents. 1 skill, 13 commands (plan, evolve, explain, find, compare, review, choose, estimate, tradeoffs, diagram, interview, cheatsheet, help), and 15 self-contained reference files — original prose, no external links.",
   "author": {
     "name": "Mohammad Abu Mattar",

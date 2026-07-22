@@ -30,11 +30,11 @@ Default to orchestration for a workflow you must audit (payments, order fulfillm
 
 - **Bounded context**: an explicit boundary where a model and its language are consistent. Service boundaries should track bounded contexts, not database tables.
 - **Ubiquitous language**: same terms in code, conversation, and docs.
-- **Aggregate**: a consistency boundary — the unit you load and save transactionally.
+- **Aggregate**: a consistency boundary, the unit you load and save transactionally.
 - **Entity vs value object**: identity that persists vs a value defined only by its attributes.
 - Use DDD to find seams; skip the ceremony on a simple app.
 
-## Design patterns — the reflex ones
+## Design patterns: the reflex ones
 
 Strategy (swap behavior), Factory (defer construction), Observer (event notify), Adapter (fit a mismatched interface), Decorator (layer behavior), Facade (simplify a subsystem), Singleton (one instance — usually a smell; prefer DI). A pattern is a name for a shape you already needed, not a thing to add for its own sake.
 
