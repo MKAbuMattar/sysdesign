@@ -32,7 +32,7 @@ Output in `dist/`:
 - `system-design-standard.md` — the whole reference as one numbered document
 - `standard/NN-topic.md` — each topic as a standalone numbered file
 - `system-design-standard.pdf` / `.docx` — if `weasyprint` / `htmldocx` load on your machine
-- `diagrams/*.svg` — rendered diagrams, only if the mermaid CLI (`mmdc`) is installed
+- `diagrams/*.svg` — rendered diagrams (only if the mermaid CLI `mmdc` is installed); when rendered, the combined Markdown and PDF embed them as images instead of raw mermaid fences
 
 The script is self-contained (uv/PEP 723 deps, paths relative to itself, no config, no network).
 PDF/docx are best-effort: a missing optional dependency is a warning, not a failure — the

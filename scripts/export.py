@@ -85,17 +85,21 @@ def shift_headings(md: str) -> str:
     return "\n".join(out)
 
 
-def diagrams_section() -> str:
+def diagrams_section(svgs: dict[str, Path]) -> str:
+    """Diagram appendix: an embedded image when the SVG was rendered, mermaid source otherwise."""
     if not DIAGRAM_DIR.is_dir():
         return ""
     parts = ["# Diagrams\n"]
     for mmd in sorted(DIAGRAM_DIR.glob("*.mmd")):
         name = mmd.stem.replace("-", " ").title()
-        parts.append(f"## {name}\n\n```mermaid\n{mmd.read_text(encoding='utf-8').strip()}\n```\n")
+        if mmd.stem in svgs:
+            parts.append(f"## {name}\n\n![{name}](diagrams/{mmd.stem}.svg)\n")
+        else:
+            parts.append(f"## {name}\n\n```mermaid\n{mmd.read_text(encoding='utf-8').strip()}\n```\n")
     return "\n".join(parts)
 
 
-def build_bundle(out: Path) -> str:
+def build_bundle(out: Path, svgs: dict[str, Path]) -> str:
     """Assemble the combined Markdown and write per-topic numbered files. Returns combined md."""
     standard_dir = out / "standard"
     standard_dir.mkdir(parents=True, exist_ok=True)
@@ -117,26 +121,32 @@ def build_bundle(out: Path) -> str:
         bodies.append(f"# {n}. {title}\n\n{shift_headings(body)}\n")
         (standard_dir / f"{n:02d}-{path.stem}.md").write_text(
             f"# {n}. {title}\n\n{body}\n", encoding="utf-8")
-    combined = "\n".join(sections) + "\n\n" + "\n\n".join(bodies) + "\n\n" + diagrams_section()
+    combined = "\n".join(sections) + "\n\n" + "\n\n".join(bodies) + "\n\n" + diagrams_section(svgs)
     logger.info("bundled %d reference files → %s", n, standard_dir)
     return combined
 
 
-def render_svgs(out: Path) -> None:
-    """Render diagrams to SVG if the mermaid CLI (mmdc) is available; otherwise skip quietly."""
+def render_svgs(out: Path) -> dict[str, Path]:
+    """Render diagrams to SVG when the mermaid CLI (mmdc) is available. Returns stem → svg path."""
+    rendered: dict[str, Path] = {}
     mmdc = shutil.which("mmdc")
     if not mmdc or not DIAGRAM_DIR.is_dir():
         logger.info("mmdc not found — diagrams stay as ```mermaid source (renders on GitHub)")
-        return
+        return rendered
     svg_dir = out / "diagrams"
     svg_dir.mkdir(parents=True, exist_ok=True)
     for mmd in sorted(DIAGRAM_DIR.glob("*.mmd")):
+        target = svg_dir / f"{mmd.stem}.svg"
         try:
-            subprocess.run([mmdc, "-i", str(mmd), "-o", str(svg_dir / f"{mmd.stem}.svg")],
+            subprocess.run([mmdc, "-i", str(mmd), "-o", str(target)],
                            check=True, capture_output=True)
+            if target.exists():
+                rendered[mmd.stem] = target
         except subprocess.CalledProcessError as e:
             logger.warning("mmdc failed for %s: %s", mmd.name, e)
-    logger.info("rendered SVGs → %s", svg_dir)
+    logger.info("rendered %d/%d diagrams → %s", len(rendered),
+                len(list(DIAGRAM_DIR.glob("*.mmd"))), svg_dir)
+    return rendered
 
 
 def main() -> int:
@@ -146,7 +156,8 @@ def main() -> int:
     try:
         out: Path = args.out
         out.mkdir(parents=True, exist_ok=True)
-        combined = build_bundle(out)
+        svgs = render_svgs(out)
+        combined = build_bundle(out, svgs)
 
         md_path = out / "system-design-standard.md"
         md_path.write_text(combined, encoding="utf-8")
@@ -162,7 +173,8 @@ def main() -> int:
 
         try:
             from weasyprint import HTML  # noqa: PLC0415
-            HTML(string=html).write_pdf(str(out / "system-design-standard.pdf"))
+            # base_url lets weasyprint resolve the relative diagrams/*.svg image refs
+            HTML(string=html, base_url=str(out) + "/").write_pdf(str(out / "system-design-standard.pdf"))
             logger.info("wrote %s", out / "system-design-standard.pdf")
         except Exception as e:  # weasyprint pulls system libs; degrade, don't fail
             logger.warning("PDF skipped (%s): %s", type(e).__name__, e)
@@ -170,14 +182,14 @@ def main() -> int:
         try:
             from docx import Document  # noqa: PLC0415
             from htmldocx import HtmlToDocx  # noqa: PLC0415
+            # docx can't embed SVG; drop the img tags and keep the heading as the caption
             doc = Document()
-            HtmlToDocx().add_html_to_document(html, doc)
+            HtmlToDocx().add_html_to_document(re.sub(r"<img\b[^>]*>", "", html), doc)
             doc.save(str(out / "system-design-standard.docx"))
             logger.info("wrote %s", out / "system-design-standard.docx")
         except Exception as e:
             logger.warning("docx skipped (%s): %s", type(e).__name__, e)
 
-        render_svgs(out)
         logger.info("done → %s", out)
         return 0
     except FileNotFoundError as e:
