@@ -36,7 +36,7 @@ ORDER = [
     "architecture-patterns.md", "api-web.md", "networking.md", "data-storage.md",
     "caching-performance.md", "distributed-systems.md", "os-concurrency.md",
     "security-auth.md", "payments.md", "ai-ml-systems.md", "devops-k8s.md",
-    "observability.md", "dev-tools.md", "case-studies.md", "interview.md",
+    "observability.md", "cost-engineering.md", "dev-tools.md", "case-studies.md", "interview.md",
 ]
 
 HEADING = re.compile(r"^(#{1,6})(\s)")

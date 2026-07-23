@@ -101,6 +101,7 @@ export const topics: readonly Topic[] = [
   { slug: "security-auth", covers: "Sessions vs JWT, OAuth 2.0 and OIDC, SSO, encoding vs encryption vs hashing, secrets, RBAC/ABAC/ReBAC." },
   { slug: "devops-k8s", covers: "K8s service types and patterns, deployment strategies, Docker best practices, CI/CD, DevOps vs SRE vs platform." },
   { slug: "observability", covers: "SLOs, SLIs and error budgets, metrics/logs/traces and what each costs, RED and USE, alerting philosophy, dashboards and runbooks." },
+  { slug: "cost-engineering", covers: "The dominant-line-item method, unit economics, egress costs, storage tiers, commitment discounts, the managed premium, cost as a design input." },
   { slug: "architecture-patterns", covers: "Monolith vs microservices, architectural patterns, orchestration vs choreography, DDD, the reflex design patterns." },
   { slug: "case-studies", covers: "Netflix, Discord, Twitter, Uber, Figma, Airbnb and more, plus the classic 'design X' problems." },
   { slug: "networking", covers: "OSI, TCP vs UDP, IP and NAT, DNS, protocols and ports, latency and geography." },

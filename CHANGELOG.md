@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.12.0] - 2026-07-23
+
+### Added
+
+- **`references/cost-engineering.md`** (16th reference) — cloud cost as a design input: the
+  dominant-line-item method, unit economics (cost per request/user/GB), egress rates and their
+  traps (internet, cross-region, cross-AZ), storage tiers and retrieval-cost gotchas, commitment
+  and spot discounts, the managed premium, and cost budgeting in the plan.
+
 ## [0.11.1] - 2026-07-20
 
 ### Changed
@@ -159,6 +168,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.12.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.12.0
 [0.11.1]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.1
 [0.11.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.0
 [0.10.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.10.0
