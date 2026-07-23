@@ -18,6 +18,7 @@ one-line count syncs so it never drifts.
 | 7 | 11–12 | **README i18n** — `README.ar.md` (RTL-correct) + `README.es.md` with a language-switcher line. | planned |
 | 8 | 13 | **v1.0.0 milestone** — full audit (validate + lint + official `claude plugin validate`), README polish, count/consistency sweep, CHANGELOG, tag + release. | planned |
 | 9 | — | **Low-level design reference** (unplanned, from an awesome-low-level-design gap analysis) — `references/low-level-design.md`: OOP/SOLID, class relationships, the pattern catalog, the LLD interview method, classic machine-coding problems. 17th reference. | ✅ v0.13.0 |
+| 10 | — | **LLD problem-coverage pass** — extend `low-level-design.md` with the missing problem families (auction bid race, stock-brokerage order book, ride-share/food-delivery matching + dispatch, social-graph domain modeling, turn-based game loop, course registration capacity + waitlist) and a **concurrency machine-coding table** (FooBar/ZeroEvenOdd/H2O semaphore puzzles, thread-safe blocking queue, concurrent hashmap via lock striping, TTL cache, concurrent bloom filter, parallel merge sort) with the unlocking primitive per problem. | planned |
 
 Rejected on purpose (lean rule): new commands (the 13 intents are complete; more would be
 dupes), a second skill (`AGENTS.md`'s 1-skill convention), committed generated artifacts
