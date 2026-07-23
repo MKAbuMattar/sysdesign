@@ -25,8 +25,8 @@ commands
 topics (references/)
   api-web · data-storage · caching-performance · distributed-systems
   security-auth · devops-k8s · observability · cost-engineering
-  architecture-patterns · case-studies · networking · os-concurrency
-  payments · ai-ml-systems · dev-tools · interview
+  architecture-patterns · low-level-design · case-studies · networking
+  os-concurrency · payments · ai-ml-systems · dev-tools · interview
 
 principle
   state the constraint → pick the fitting option → name what you gave up

@@ -1,6 +1,6 @@
 ---
 name: system-design
-description: Use when designing, reviewing, explaining, or estimating backend and distributed system architecture — API and web, databases and storage, caching and performance, networking, scalability and resiliency, security and auth, payments and fintech, AI/ML systems, DevOps and Kubernetes, observability and SLOs, cloud cost engineering, OS and concurrency, software architecture patterns, real-world case studies, or preparing for a system design interview.
+description: Use when designing, reviewing, explaining, or estimating backend and distributed system architecture — API and web, databases and storage, caching and performance, networking, scalability and resiliency, security and auth, payments and fintech, AI/ML systems, DevOps and Kubernetes, observability and SLOs, cloud cost engineering, OS and concurrency, software architecture patterns, low-level design (OOP, SOLID, design patterns, machine-coding problems), real-world case studies, or preparing for a system design or LLD interview.
 ---
 
 # System Design
@@ -36,6 +36,7 @@ Load the file that matches the topic. Each is a standalone quick-reference.
 | Observability | `references/observability.md` | SLOs/SLIs/error budgets, metrics/logs/traces and their costs, RED/USE, alerting philosophy, runbooks |
 | Cost engineering | `references/cost-engineering.md` | dominant-line-item method, unit economics, egress, storage tiers, commitment discounts, managed premium |
 | Architecture & patterns | `references/architecture-patterns.md` | monolith vs microservices, architectural patterns, orchestration vs choreography, DDD, design patterns |
+| Low-level design | `references/low-level-design.md` | OOP & SOLID, class relationships, the design-pattern catalog, the LLD interview method, classic problems (parking lot, elevator, LRU...) |
 | Case studies | `references/case-studies.md` | real-world architectures (Netflix, Uber, Discord, Figma...) and classic "design X" problems |
 | Networking | `references/networking.md` | OSI, TCP/UDP, IP/NAT, DNS, protocols & ports, latency/geography |
 | OS & concurrency | `references/os-concurrency.md` | process vs thread, concurrency vs parallelism, async/event loop, locks/deadlock, GC |

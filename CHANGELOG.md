@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.13.0] - 2026-07-23
+
+### Added
+
+- **`references/low-level-design.md`** (17th reference) — the class-level sibling of the rest of
+  the skill, filling the LLD gap: SOLID with the smell each principle prevents, class
+  relationships (association/aggregation/composition, composition over inheritance), a
+  decision-first **design-pattern catalog**, the **LLD interview method** (entities → ownership →
+  patterns/state machines → concurrency), and the classic machine-coding problems with the one
+  insight that unlocks each (parking lot, elevator, LRU cache, Splitwise, booking, rate limiter).
+
 ## [0.12.0] - 2026-07-23
 
 ### Added
@@ -168,6 +179,7 @@ All notable changes to this project are documented here. The format is based on
 - The knowledge is **self-contained** — original prose with no external links, inspired by (never
   copied from) ByteByteGo's *System Design 101*. MIT-licensed.
 
+[0.13.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.13.0
 [0.12.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.12.0
 [0.11.1]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.1
 [0.11.0]: https://github.com/mkabumattar/sysdesign/releases/tag/v0.11.0

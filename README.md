@@ -9,14 +9,14 @@
   <a href="#install"><img src="https://img.shields.io/badge/Claude_Code-plugin-5b8def" alt="Claude Code plugin"></a>
   <img src="https://img.shields.io/badge/skill-1-3bb89a" alt="1 skill">
   <img src="https://img.shields.io/badge/commands-13-e0a458" alt="13 commands">
-  <img src="https://img.shields.io/badge/reference_files-16-5b8def" alt="16 reference files">
+  <img src="https://img.shields.io/badge/reference_files-17-5b8def" alt="17 reference files">
   <img src="https://img.shields.io/badge/knowledge-self--contained-3bb89a" alt="self-contained, no external links">
   <a href="https://sysdesign.mkabumattar.com"><img src="https://img.shields.io/badge/site-sysdesign.mkabumattar.com-5b8def" alt="website"></a>
 </p>
 
 # sysdesign
 
-**System design knowledge, wired into your AI agent.** A [Claude Code](https://claude.com/claude-code) plugin: one skill, thirteen commands, and sixteen self-contained reference files. Explain a concept, compare options, pressure-test an architecture, estimate capacity, or prep an interview — with tradeoffs stated, not hand-waved.
+**System design knowledge, wired into your AI agent.** A [Claude Code](https://claude.com/claude-code) plugin: one skill, thirteen commands, and seventeen self-contained reference files. Explain a concept, compare options, pressure-test an architecture, estimate capacity, or prep an interview — with tradeoffs stated, not hand-waved.
 
 The knowledge lives in the files. There are **no external links inside the skill** — the agent loads the one reference a task needs, and the answer is right there. Original prose, inspired by the taxonomy of [ByteByteGo's *System Design 101*](https://github.com/ByteByteGoHq/system-design-101), never copied from it.
 
@@ -123,9 +123,9 @@ Thirteen thin wrappers over the one `system-design` skill, so the reasoning stay
 
 ## Reference topics
 
-Sixteen standalone files under `skills/system-design/references/` — dense, tradeoff-first, no external links:
+Seventeen standalone files under `skills/system-design/references/` — dense, tradeoff-first, no external links:
 
-`api-web` · `data-storage` · `caching-performance` · `distributed-systems` · `security-auth` · `devops-k8s` · `observability` · `cost-engineering` · `architecture-patterns` · `case-studies` · `networking` · `os-concurrency` · `payments` · `ai-ml-systems` · `dev-tools` · `interview`
+`api-web` · `data-storage` · `caching-performance` · `distributed-systems` · `security-auth` · `devops-k8s` · `observability` · `cost-engineering` · `architecture-patterns` · `low-level-design` · `case-studies` · `networking` · `os-concurrency` · `payments` · `ai-ml-systems` · `dev-tools` · `interview`
 
 Together they cover the fifteen categories of *System Design 101* — API & web, databases & storage, caching & performance, cloud & distributed systems, security, DevOps/CI-CD, software architecture, real-world case studies, technical interviews, computer fundamentals (networking + OS), payments & fintech, AI/ML, and dev tools.
 

@@ -17,6 +17,7 @@ one-line count syncs so it never drifts.
 | 6 | 9–10 | **Deepen case-studies** — the thinnest reference gains 3–4 more precedents (Stripe idempotency/ledger, Shopify flash-sale pods, Slack real-time messaging) in constraint→lesson framing. Original prose, license-clean. | planned |
 | 7 | 11–12 | **README i18n** — `README.ar.md` (RTL-correct) + `README.es.md` with a language-switcher line. | planned |
 | 8 | 13 | **v1.0.0 milestone** — full audit (validate + lint + official `claude plugin validate`), README polish, count/consistency sweep, CHANGELOG, tag + release. | planned |
+| 9 | — | **Low-level design reference** (unplanned, from an awesome-low-level-design gap analysis) — `references/low-level-design.md`: OOP/SOLID, class relationships, the pattern catalog, the LLD interview method, classic machine-coding problems. 17th reference. | ✅ v0.13.0 |
 
 Rejected on purpose (lean rule): new commands (the 13 intents are complete; more would be
 dupes), a second skill (`AGENTS.md`'s 1-skill convention), committed generated artifacts

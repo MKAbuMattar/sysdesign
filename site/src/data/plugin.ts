@@ -103,6 +103,7 @@ export const topics: readonly Topic[] = [
   { slug: "observability", covers: "SLOs, SLIs and error budgets, metrics/logs/traces and what each costs, RED and USE, alerting philosophy, dashboards and runbooks." },
   { slug: "cost-engineering", covers: "The dominant-line-item method, unit economics, egress costs, storage tiers, commitment discounts, the managed premium, cost as a design input." },
   { slug: "architecture-patterns", covers: "Monolith vs microservices, architectural patterns, orchestration vs choreography, DDD, the reflex design patterns." },
+  { slug: "low-level-design", covers: "OOP and SOLID, class relationships, the design-pattern catalog, the LLD interview method, classic machine-coding problems (parking lot, elevator, LRU cache, Splitwise)." },
   { slug: "case-studies", covers: "Netflix, Discord, Twitter, Uber, Figma, Airbnb and more, plus the classic 'design X' problems." },
   { slug: "networking", covers: "OSI, TCP vs UDP, IP and NAT, DNS, protocols and ports, latency and geography." },
   { slug: "os-concurrency", covers: "Process vs thread, concurrency vs parallelism, async and the event loop, locks and deadlock, paging, garbage collection." },

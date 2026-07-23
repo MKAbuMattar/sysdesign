@@ -33,7 +33,7 @@ DIAGRAM_DIR = REPO / "artifacts" / "diagrams"
 
 # Reading order for the bundle (generic system-design curriculum). Files not present are skipped.
 ORDER = [
-    "architecture-patterns.md", "api-web.md", "networking.md", "data-storage.md",
+    "architecture-patterns.md", "low-level-design.md", "api-web.md", "networking.md", "data-storage.md",
     "caching-performance.md", "distributed-systems.md", "os-concurrency.md",
     "security-auth.md", "payments.md", "ai-ml-systems.md", "devops-k8s.md",
     "observability.md", "cost-engineering.md", "dev-tools.md", "case-studies.md", "interview.md",
